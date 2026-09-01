@@ -1139,22 +1139,45 @@ body {
 
 .konkani-music-banner {
   position: fixed;
-  top: 75px;
+  bottom: 24px;
+  top: auto;
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
-  background: rgba(15, 10, 35, 0.88);
+  background: rgba(15, 10, 35, 0.94);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(245, 158, 11, 0.5);
   border-radius: 30px;
-  padding: 8px 24px;
+  padding: 8px 16px 8px 20px;
   display: flex;
   align-items: center;
   gap: 12px;
   box-shadow: 0 8px 30px rgba(245, 158, 11, 0.35);
   animation: konkaniGlow 2s infinite alternate;
-  pointer-events: none;
+  pointer-events: auto;
+}
+
+.konkani-close-btn {
+  background: rgba(255, 255, 255, 0.18);
+  border: none;
+  color: #fff;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.konkani-close-btn:hover {
+  background: rgba(244, 63, 94, 0.85);
+  transform: scale(1.1);
 }
 
 @keyframes konkaniGlow {
@@ -1304,6 +1327,20 @@ button, a, .card, .candle, .balloon {
 }
 
 @media (max-width: 768px) {
+  /* Music Lyric Banner: Bottom fixed non-blocking toast on mobile */
+  .konkani-music-banner {
+    position: fixed !important;
+    bottom: 16px !important;
+    top: auto !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 24px) !important;
+    max-width: 440px !important;
+    padding: 8px 14px 8px 18px !important;
+    border-radius: 24px !important;
+    z-index: 9999 !important;
+  }
+
   /* Control Bar: Centered sticky/fixed bar at top on mobile */
   .audio-control-bar {
     top: 10px;
@@ -1671,6 +1708,7 @@ button, a, .card, .candle, .balloon {
       <span class="konkani-title">Konkani Birthday Track Playing 🌺</span>
       <div id="konkaniLyricText" class="konkani-lyric">"Tuka Waddivasacho Mogal Parboo, Carol! 🌴✨"</div>
     </div>
+    <button id="closeKonkaniBanner" class="konkani-close-btn" title="Dismiss Banner">✕</button>
   </div>
 
   <!-- Hero Header Section -->
@@ -2241,6 +2279,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   musicToggleBtn.addEventListener('click', toggleBirthdayMusic);
+
+  const closeKonkaniBannerBtn = document.getElementById('closeKonkaniBanner');
+  if (closeKonkaniBannerBtn) {
+    closeKonkaniBannerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const konkaniBanner = document.getElementById('konkaniBanner');
+      if (konkaniBanner) konkaniBanner.classList.add('hidden');
+    });
+  }
 
   // ==========================================================================
   // CANVASES: SPARKLES, CHOCOLATE DRIZZLE & CONFETTI ENGINE (OPTIMIZED)
