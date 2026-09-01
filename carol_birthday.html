@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Happy Birthday Carol!</title>
   
   <!-- Open Graph & Social Media Link Preview Tags -->
@@ -1309,17 +1310,17 @@ button, a, .card, .candle, .balloon {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
-    width: calc(100% - 24px);
+    width: calc(100% - 20px);
     max-width: 480px;
     display: flex;
     justify-content: center;
     gap: 6px;
-    padding: 6px 10px;
-    background: rgba(12, 8, 32, 0.92);
+    padding: 6px 8px;
+    background: rgba(12, 8, 32, 0.94);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     z-index: 1000;
   }
@@ -1328,7 +1329,7 @@ button, a, .card, .candle, .balloon {
     flex: 1;
     min-width: 0;
     padding: 8px 6px;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     justify-content: center;
     white-space: nowrap;
     overflow: hidden;
@@ -1351,9 +1352,9 @@ button, a, .card, .candle, .balloon {
   }
 
   .python-badge {
-    font-size: 0.72rem;
-    padding: 6px 12px;
-    max-width: 95%;
+    font-size: 0.78rem;
+    padding: 6px 14px;
+    max-width: 98%;
     margin: 0 auto 15px auto;
     word-break: break-word;
     text-align: center;
@@ -1361,35 +1362,43 @@ button, a, .card, .candle, .balloon {
   }
 
   .hero-title {
-    font-size: clamp(2rem, 9vw, 3.2rem);
+    font-size: clamp(2.2rem, 9vw, 3.4rem);
     line-height: 1.15;
     padding: 0 5px;
   }
 
   .hero-subtitle {
-    font-size: clamp(0.9rem, 3.8vw, 1.05rem);
-    line-height: 1.5;
-    padding: 0 10px;
+    font-size: clamp(1rem, 4vw, 1.18rem);
+    line-height: 1.6;
+    padding: 0 5px;
     max-width: 100%;
+    color: #e2e8f0;
   }
 
   /* Sections Padding */
   section {
-    padding: 40px 16px !important;
+    padding: 35px 14px !important;
   }
 
   .section-title h2 {
-    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    font-size: clamp(1.8rem, 6.5vw, 2.3rem);
+    line-height: 1.25;
   }
 
   .section-title p {
-    font-size: 0.9rem;
-    padding: 0 10px;
+    font-size: 1.02rem;
+    padding: 0 5px;
+    color: #cbd5e1;
+  }
+
+  .sub-tag {
+    font-size: 0.85rem;
+    letter-spacing: 2.5px;
   }
 
   /* Interactive Cake & Candles Scaling for Mobile */
   .cake-container {
-    transform: scale(0.85);
+    transform: scale(0.88);
     margin: 0 auto;
     transform-origin: center top;
   }
@@ -1405,7 +1414,7 @@ button, a, .card, .candle, .balloon {
   .cake-actions button {
     width: 100%;
     min-height: 48px;
-    font-size: 0.95rem;
+    font-size: 1rem;
     justify-content: center;
   }
 
@@ -1415,107 +1424,221 @@ button, a, .card, .candle, .balloon {
   .features-grid {
     grid-template-columns: 1fr !important;
     gap: 20px !important;
-    padding: 0 5px !important;
+    padding: 0 !important;
+  }
+
+  /* ==========================================
+     CAROL'S FLIP CARDS MOBILE ENHANCEMENTS
+     ========================================== */
+  .cards-carousel {
+    grid-template-columns: 1fr !important;
+    gap: 22px !important;
+    width: 100% !important;
+  }
+
+  .wish-card {
+    height: 340px !important; /* Spacious vertical height on mobile */
+    min-height: 320px !important;
+    width: 100% !important;
+  }
+
+  .card-front, .card-back {
+    padding: 24px 18px !important;
+    border-radius: 20px !important;
+  }
+
+  .card-front h3 {
+    font-size: 1.6rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .card-front p {
+    font-size: 1.05rem !important;
+    color: #cbd5e1 !important;
+  }
+
+  .card-back p {
+    font-size: 1.2rem !important; /* Big, clear readable text on mobile */
+    line-height: 1.65 !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .card-icon {
+    font-size: 3.2rem !important;
+    margin-bottom: 12px !important;
+  }
+
+  .card-number {
+    font-size: 1.1rem !important;
+    top: 16px !important;
+    left: 18px !important;
+  }
+
+  .card-heart {
+    font-size: 2rem !important;
+    margin-top: 12px !important;
+  }
+
+  /* Gifts Unboxing Grid on Mobile */
+  .gifts-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+
+  .gift-card {
+    padding: 28px 16px 20px !important;
+    border-radius: 20px !important;
+  }
+
+  .gift-label h3 {
+    font-size: 1.45rem !important;
+  }
+
+  .click-hint {
+    font-size: 0.95rem !important;
+    padding: 6px 16px !important;
   }
 
   .card {
-    padding: 22px 18px !important;
-    border-radius: 16px !important;
+    padding: 24px 18px !important;
+    border-radius: 18px !important;
   }
 
   .card-title {
-    font-size: 1.25rem !important;
+    font-size: 1.3rem !important;
   }
 
   /* Python Code Terminal & Bug Slayer on Mobile */
+  .python-terminal-section {
+    padding: 30px 14px !important;
+  }
+
   .terminal-box {
     width: 100% !important;
-    border-radius: 12px !important;
+    border-radius: 14px !important;
     margin: 15px 0 !important;
   }
 
   .code-editor {
-    padding: 12px 10px !important;
-    font-size: 0.78rem !important;
-    line-height: 1.4 !important;
+    padding: 14px 12px !important;
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .terminal-body {
+    padding: 16px !important;
+    font-size: 0.92rem !important;
+    line-height: 1.55 !important;
   }
 
   .terminal-input-row {
     flex-wrap: wrap !important;
     gap: 8px !important;
-    padding: 10px 12px !important;
+    padding: 12px 14px !important;
   }
 
   .terminal-input {
-    font-size: 0.85rem !important;
+    font-size: 0.92rem !important;
     width: 100% !important;
-    min-height: 38px;
+    min-height: 40px;
   }
 
   .terminal-actions-bar {
     flex-direction: column !important;
     gap: 10px !important;
     width: 100%;
+    padding: 12px !important;
   }
 
   .terminal-actions-bar button {
     width: 100% !important;
     min-height: 46px !important;
+    font-size: 0.92rem !important;
     justify-content: center !important;
   }
 
   /* Modals on Mobile */
   .modal-card {
-    width: 92% !important;
-    max-width: 400px !important;
-    padding: 24px 18px !important;
-    margin: 15px !important;
-    max-height: 85vh !important;
+    width: 94% !important;
+    max-width: 440px !important;
+    padding: 28px 20px !important;
+    margin: 10px !important;
+    max-height: 88vh !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch;
-    border-radius: 20px !important;
+    border-radius: 24px !important;
+  }
+
+  .modal-title {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .modal-content {
+    font-size: 1.2rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .modal-highlight-box {
+    font-size: 1.3rem !important;
+    padding: 16px !important;
   }
 
   .life-gift-text {
-    font-size: clamp(1.3rem, 5vw, 1.7rem) !important;
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem) !important;
   }
 
   .modal-close {
-    top: 12px;
-    right: 12px;
-    width: 36px;
-    height: 36px;
-    font-size: 1.3rem;
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+    font-size: 1.4rem;
   }
 
   /* Footer on Mobile */
   .site-footer {
     padding: 30px 16px !important;
-    font-size: 0.85rem !important;
+    font-size: 0.92rem !important;
   }
 }
 
-/* Extra Small Phones (< 400px wide e.g. iPhone SE, Galaxy Z Flip, etc.) */
-@media (max-width: 400px) {
+/* Extra Small Phones (< 420px wide e.g. iPhone SE, Galaxy Z Flip, small Androids) */
+@media (max-width: 420px) {
   .audio-control-bar {
-    width: calc(100% - 16px);
+    width: calc(100% - 12px);
     padding: 4px 6px;
     gap: 4px;
   }
 
   .audio-btn {
     padding: 6px 4px;
-    font-size: 0.72rem;
+    font-size: 0.74rem;
   }
 
   .cake-container {
-    transform: scale(0.72);
+    transform: scale(0.78);
   }
 
   .python-badge {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
+  }
+
+  .wish-card {
+    height: 360px !important; /* Slightly taller for narrow screen reading */
+  }
+
+  .card-back p {
+    font-size: 1.15rem !important;
+    line-height: 1.6 !important;
+  }
+
+  .card-front, .card-back {
+    padding: 20px 14px !important;
   }
 }
   </style>
