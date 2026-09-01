@@ -845,6 +845,185 @@ body {
 }
 
 /* ==========================================================================
+   CAROL'S INTERACTIVE POLAROID MEMORIES WALL & LIGHTBOX
+   ========================================================================== */
+
+.polaroid-section {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 30px;
+  padding: 50px 30px;
+  box-shadow: var(--glass-shadow);
+}
+
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 35px;
+  margin-top: 35px;
+  perspective: 1000px;
+}
+
+.polaroid-card {
+  background: #ffffff;
+  padding: 16px 16px 20px 16px;
+  border-radius: 6px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  color: #1e293b;
+  transform-style: preserve-3d;
+}
+
+.tilt-left { transform: rotate(-3.5deg); }
+.tilt-right { transform: rotate(3.5deg); }
+.tilt-left-subtle { transform: rotate(-2deg); }
+
+.polaroid-card:hover {
+  transform: rotate(0deg) scale(1.06) translateY(-10px);
+  z-index: 10;
+  box-shadow: 0 25px 50px rgba(236, 72, 153, 0.4), 0 0 25px rgba(245, 158, 11, 0.4);
+}
+
+.polaroid-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 26px;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  z-index: 2;
+}
+
+.tape-pink { background: rgba(244, 63, 94, 0.35); }
+.tape-gold { background: rgba(245, 158, 11, 0.35); }
+
+.polaroid-photo-frame {
+  width: 100%;
+  height: 240px;
+  background: #0f172a;
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+
+.polaroid-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.polaroid-card:hover .polaroid-photo-frame img {
+  transform: scale(1.08);
+}
+
+.photo-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  gap: 10px;
+}
+
+.ph-python { background: linear-gradient(135deg, #1e293b, #3776ab); }
+.ph-party { background: linear-gradient(135deg, #8b5cf6, #ec4899); }
+.ph-goa { background: linear-gradient(135deg, #0284c7, #f59e0b); }
+.ph-icon { font-size: 3rem; }
+
+.polaroid-caption {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.polaroid-caption h3 {
+  font-family: var(--font-script);
+  font-size: 1.65rem;
+  color: #0f172a;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.polaroid-date {
+  font-size: 0.78rem;
+  color: #64748b;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Lightbox Styling */
+.polaroid-lightbox-card {
+  max-width: 650px !important;
+  padding: 30px 24px !important;
+  background: linear-gradient(145deg, #181030, #0c061d) !important;
+}
+
+.lightbox-photo-container {
+  width: 100%;
+  max-height: 380px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid var(--primary-gold);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  margin-bottom: 20px;
+}
+
+.lightbox-photo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox-title {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.lightbox-caption {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+  margin-bottom: 25px;
+}
+
+.lightbox-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.lightbox-nav-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lightbox-nav-btn:hover {
+  background: var(--primary-pink);
+  border-color: var(--primary-pink);
+  box-shadow: 0 0 15px var(--accent-pink-glow);
+}
+
+/* ==========================================================================
    GIFT REVEAL MODAL
    ========================================================================== */
 
@@ -970,10 +1149,35 @@ body {
    PYTHON DEVELOPER TERMINAL STYLES
    ========================================================================== */
 
+.hero-badges-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
 .python-badge {
   background: linear-gradient(135deg, rgba(55, 118, 171, 0.4), rgba(255, 212, 59, 0.4)) !important;
   border-color: #3776ab !important;
   color: #ffd43b !important;
+  margin-bottom: 0 !important;
+}
+
+.beauty-badge {
+  background: linear-gradient(135deg, rgba(236, 72, 153, 0.35), rgba(244, 63, 94, 0.35)) !important;
+  border-color: rgba(244, 63, 94, 0.7) !important;
+  color: #fbcfe8 !important;
+  box-shadow: 0 0 15px rgba(236, 72, 153, 0.4);
+  font-weight: 800;
+  margin-bottom: 0 !important;
+  animation: beautyGlow 2.5s infinite alternate ease-in-out !important;
+}
+
+@keyframes beautyGlow {
+  0% { box-shadow: 0 0 10px rgba(236, 72, 153, 0.4); transform: scale(1); }
+  100% { box-shadow: 0 0 25px rgba(244, 63, 94, 0.8), 0 0 15px rgba(245, 158, 11, 0.5); transform: scale(1.04); }
 }
 
 .python-terminal-section {
@@ -1713,11 +1917,16 @@ button, a, .card, .candle, .balloon {
 
   <!-- Hero Header Section -->
   <header class="hero-section">
-    <div class="hero-badge python-badge">
-      <span>🐍 PYTHON CODE WIZARD & CHIEF BUG SLAYER ⚡</span>
+    <div class="hero-badges-wrapper">
+      <div class="hero-badge python-badge">
+        <span>🐍 PYTHON CODE WIZARD & CHIEF BUG SLAYER ⚡</span>
+      </div>
+      <div class="hero-badge beauty-badge">
+        <span>🌸 FLAWLESS BEAUTY CAROL 😊 ✨</span>
+      </div>
     </div>
     <h1 class="hero-title">Happy Birthday, <span class="carol-gradient">Carol!</span></h1>
-    <p class="hero-subtitle">Celebrating the coolest Python Developer & most amazing person ever! May your code run bug-free, your APIs respond in 1ms, and your cake be infinite!</p>
+    <p class="hero-subtitle">Celebrating Flawless Beauty Carol 😊, the coolest Python Developer & most amazing person ever! May your code run bug-free, your APIs respond in 1ms, and your cake be infinite!</p>
     
     <div class="header-decor">
       <span class="decor-line"></span>
@@ -2084,6 +2293,66 @@ button, a, .card, .candle, .balloon {
             </div>
           </div>
         </div>
+
+        <div class="wish-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <div class="card-number">07</div>
+              <div class="card-icon">🌸</div>
+              <h3>Flawless Beauty 😊</h3>
+              <p>Click to flip</p>
+            </div>
+            <div class="card-back">
+              <p>“To Flawless Beauty Carol 😊 — Your warmth, kindness, brilliant mind, and radiant smile bring joy to everyone around you!”</p>
+              <div class="card-heart">💖</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- CAROL'S INTERACTIVE POLAROID MEMORIES WALL -->
+    <section class="polaroid-section" id="polaroidSection">
+      <div class="section-title">
+        <span class="sub-tag">MEMORIES & MOMENTS</span>
+        <h2>Carol's Polaroid Memories Wall 📸✨</h2>
+        <p>Click or tap any polaroid photo below to view in Lightbox!</p>
+      </div>
+
+      <div class="polaroid-grid">
+        <!-- Polaroid 1 -->
+        <div class="polaroid-card tilt-left" data-title="Python Code Wizardry 🐍" data-caption="Late night coding sessions, endless cups of hot coffee, and fixing zero-day bugs like an absolute pro! Carol's dedication and brilliance are legendary. ✨" data-img="images/memory1.jpg">
+          <div class="polaroid-tape"></div>
+          <div class="polaroid-photo-frame">
+            <img src="images/memory1.jpg" alt="Python Wizard Carol" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'photo-placeholder ph-python\'><span class=\'ph-icon\'>🐍💻</span><span>Python Dev Wizard</span></div>';" />
+          </div>
+          <div class="polaroid-caption">
+            <h3>Python Wizardry 🐍</h3>
+            <span class="polaroid-date">Late Night Dev Session</span>
+          </div>
+        </div>
+
+        <!-- Polaroid 2 -->
+        <div class="polaroid-card tilt-right" data-title="Birthday Celebration Glow 🎂" data-caption="Surrounded by laughter, golden confetti, sparkling lights, and infinite birthday cheer! Celebrating Carol's special day in epic style. 🥳🎉" data-img="images/memory2.jpg">
+          <div class="polaroid-tape tape-pink"></div>
+          <div class="polaroid-photo-frame">
+            <img src="images/memory2.jpg" alt="Birthday Party Carol" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'photo-placeholder ph-party\'><span class=\'ph-icon\'>🎉🎂</span><span>Party Lights</span></div>';" />
+          </div>
+          <div class="polaroid-caption">
+            <h3>Birthday Sparkles 🎂</h3>
+            <span class="polaroid-date">Celebration Time</span>
+          </div>
+        </div>
+
+        <!-- Polaroid 3 -->
+        <div class="polaroid-card tilt-left-subtle" data-title="Goan Sunset Peace 🌴" data-caption="Golden sunsets over palm trees, calm ocean breezes, and tropical serenity! May your year ahead be as blissful and peaceful as a Goan sunset! 🌅" data-img="images/memory3.jpg">
+          <div class="polaroid-tape tape-gold"></div>
+          <div class="polaroid-photo-frame">
+            <img src="images/memory3.jpg" alt="Goan Sunset Carol" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\'photo-placeholder ph-goa\'><span class=\'ph-icon\'>🌴🌅</span><span>Goan Sunset</span></div>';" />
+          </div>
+          <div class="polaroid-caption">
+            <h3>Goan Sunset Vibes 🌴</h3>
+            <span class="polaroid-date">Peace & Happiness</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2121,13 +2390,27 @@ button, a, .card, .candle, .balloon {
         <button id="lockSubmitBtn" class="lock-btn">Unlock 🔓</button>
       </div>
       <div id="lockErrorMsg" class="lock-error-msg"></div>
-      <p class="lock-hint-text">💡 Hint: Enter <code>carol</code> to verify identity!</p>
+  <!-- POLAROID LIGHTBOX MODAL -->
+  <div id="polaroidModal" class="modal-overlay hidden">
+    <div class="modal-card polaroid-lightbox-card">
+      <button class="modal-close" id="lightboxCloseBtn">✕</button>
+      <div class="lightbox-photo-container" id="lightboxPhotoContainer">
+        <!-- Dynamic Photo -->
+      </div>
+      <div class="lightbox-details">
+        <h2 id="lightboxTitle" class="lightbox-title">Memory</h2>
+        <p id="lightboxCaption" class="lightbox-caption">Description...</p>
+      </div>
+      <div class="lightbox-nav">
+        <button id="lightboxPrev" class="lightbox-nav-btn">◀ Prev</button>
+        <button id="lightboxNext" class="lightbox-nav-btn">Next ▶</button>
+      </div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <p>Crafted for the awesome Python Developer <strong>Carol</strong> on her Special Day! 🥳🎉🐍</p>
+    <p>Crafted for Flawless Beauty <strong>Carol 😊</strong> on her Special Day! 🥳🎉🐍</p>
     <p class="footer-sub">Happy Birthday Carol!</p>
   </footer>
 
@@ -2250,6 +2533,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const konkaniLyrics = [
         "🌴 Tuka Waddivasacho Mogal Parboo, Carol! 🌺",
+        "🌸 Flawless Beauty Carol 😊 — Waddivasache Xubhakamona! ✨",
         "🎶 Waddivasache Bhaitt Ani Xubhakamona, Carol! ✨",
         "🥳 Sodanch Hasso, Sodanch Devayen Upkar Meltolo! 🙏",
         "🎂 Dev Tuka Bhorpur Kushi Ani Porbol Assonk Dinv! 💖"
@@ -3339,6 +3623,62 @@ document.addEventListener('DOMContentLoaded', () => {
       playPopSound();
     });
   });
+
+  // ==========================================================================
+  // CAROL'S POLAROID LIGHTBOX GALLERY ENGINE
+  // ==========================================================================
+
+  const polaroidCards = document.querySelectorAll('.polaroid-card');
+  const polaroidModal = document.getElementById('polaroidModal');
+  const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+  const lightboxPhotoContainer = document.getElementById('lightboxPhotoContainer');
+  const lightboxTitle = document.getElementById('lightboxTitle');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxPrev = document.getElementById('lightboxPrev');
+  const lightboxNext = document.getElementById('lightboxNext');
+
+  let currentPolaroidIndex = 0;
+
+  function updateLightbox(index) {
+    if (!polaroidCards.length) return;
+    currentPolaroidIndex = (index + polaroidCards.length) % polaroidCards.length;
+    const card = polaroidCards[currentPolaroidIndex];
+    const title = card.getAttribute('data-title') || 'Memory';
+    const caption = card.getAttribute('data-caption') || '';
+    const imgSrc = card.getAttribute('data-img') || '';
+
+    lightboxTitle.textContent = title;
+    lightboxCaption.textContent = caption;
+    lightboxPhotoContainer.innerHTML = `<img src="${imgSrc}" alt="${title}" onerror="this.onerror=null; this.parentNode.innerHTML='<div class=\\'photo-placeholder ph-python\\'><span class=\\'ph-icon\\'>📸✨</span><span>${title}</span></div>';" />`;
+  }
+
+  polaroidCards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      updateLightbox(idx);
+      if (polaroidModal) polaroidModal.classList.remove('hidden');
+      playPopSound();
+    });
+  });
+
+  if (lightboxCloseBtn && polaroidModal) {
+    lightboxCloseBtn.addEventListener('click', () => {
+      polaroidModal.classList.add('hidden');
+    });
+  }
+
+  if (lightboxPrev) {
+    lightboxPrev.addEventListener('click', () => {
+      updateLightbox(currentPolaroidIndex - 1);
+      playPopSound();
+    });
+  }
+
+  if (lightboxNext) {
+    lightboxNext.addEventListener('click', () => {
+      updateLightbox(currentPolaroidIndex + 1);
+      playPopSound();
+    });
+  }
 });
   </script>
 </body>
