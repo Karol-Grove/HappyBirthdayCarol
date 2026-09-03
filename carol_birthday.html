@@ -1314,6 +1314,144 @@ body {
   box-shadow: var(--glass-shadow);
 }
 
+/* ==========================================================================
+   3D TERMINAL ARROW & RUN CODE WARNING CALLOUT
+   ========================================================================== */
+
+.terminal-3d-notice {
+  background: linear-gradient(135deg, rgba(30, 27, 75, 0.95), rgba(49, 16, 82, 0.95));
+  border: 2px solid #ec4899;
+  border-radius: 18px;
+  padding: 16px 22px;
+  margin: 18px 0 22px 0;
+  box-shadow: 0 10px 30px rgba(236, 72, 153, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  position: relative;
+  overflow: hidden;
+  animation: noticePulse 3s infinite alternate;
+}
+
+@keyframes noticePulse {
+  0% { border-color: rgba(236, 72, 153, 0.7); box-shadow: 0 10px 25px rgba(236, 72, 153, 0.3); }
+  50% { border-color: rgba(245, 158, 11, 0.9); box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4); }
+  100% { border-color: rgba(6, 182, 212, 0.9); box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4); }
+}
+
+.terminal-3d-notice-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.notice-warning-icon {
+  font-size: 2.2rem;
+  animation: warningShake 2s infinite ease-in-out;
+  filter: drop-shadow(0 4px 8px rgba(245, 158, 11, 0.6));
+}
+
+@keyframes warningShake {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  15% { transform: rotate(-12deg) scale(1.1); }
+  30% { transform: rotate(12deg) scale(1.1); }
+  45% { transform: rotate(-6deg) scale(1.05); }
+  60% { transform: rotate(6deg) scale(1.05); }
+  75% { transform: rotate(0deg) scale(1); }
+}
+
+.notice-text-block {
+  text-align: left;
+}
+
+.notice-title {
+  color: #fbbf24;
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.notice-title-badge {
+  background: linear-gradient(135deg, #ef4444, #f59e0b);
+  color: #ffffff;
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+}
+
+.notice-desc {
+  color: #e2e8f0;
+  font-size: 0.92rem;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.notice-code-highlight {
+  background: rgba(15, 23, 42, 0.8);
+  color: #38bdf8;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-weight: 700;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* 3D Animated Pointer Arrow */
+.arrow-3d-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  perspective: 600px;
+  padding-right: 10px;
+}
+
+.arrow-3d-mark {
+  font-size: 2.8rem;
+  display: inline-block;
+  transform-style: preserve-3d;
+  animation: bounce3DArrow 1.5s infinite ease-in-out;
+  filter: drop-shadow(0 10px 15px rgba(236, 72, 153, 0.6)) drop-shadow(0 0 20px rgba(245, 158, 11, 0.8));
+}
+
+@keyframes bounce3DArrow {
+  0% {
+    transform: translateY(-8px) translateZ(20px) rotateX(15deg) scale(1);
+  }
+  50% {
+    transform: translateY(10px) translateZ(40px) rotateX(0deg) scale(1.25);
+  }
+  100% {
+    transform: translateY(-8px) translateZ(20px) rotateX(15deg) scale(1);
+  }
+}
+
+.arrow-3d-label {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-top: -4px;
+  white-space: nowrap;
+  animation: textGlowPulse 1.5s infinite alternate;
+}
+
+@keyframes textGlowPulse {
+  0% { text-shadow: 0 0 5px rgba(56, 189, 248, 0.5); transform: scale(1); }
+  100% { text-shadow: 0 0 15px rgba(236, 72, 153, 0.9), 0 0 25px rgba(245, 158, 11, 0.9); transform: scale(1.08); }
+}
+
 .terminal-window {
   background: #0d1117;
   border: 1px solid #30363d;
@@ -1882,6 +2020,19 @@ button, a, .card, .candle, .balloon {
     padding: 30px 14px !important;
   }
 
+  .terminal-3d-notice {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding: 16px 14px !important;
+  }
+  .notice-text-block {
+    text-align: center !important;
+  }
+  .arrow-3d-container {
+    padding-right: 0 !important;
+    margin-top: 10px !important;
+  }
+
   .terminal-box {
     width: 100% !important;
     border-radius: 14px !important;
@@ -2048,11 +2199,11 @@ button, a, .card, .candle, .balloon {
         <span>🐍 PYTHON CODE WIZARD & CHIEF BUG SLAYER ⚡</span>
       </div>
       <div class="hero-badge beauty-badge">
-        <span>🌸 FLAWLESS BEAUTY CAROL 😊 ✨</span>
+        <span>🌸 WONDERFUL CAROL 😊 ✨</span>
       </div>
     </div>
     <h1 class="hero-title">Happy Birthday, <span class="carol-gradient">Carol!</span></h1>
-    <p class="hero-subtitle">Celebrating Flawless Beauty Carol 😊, the coolest Python Developer & most amazing person ever! May your code run bug-free, your APIs respond in 1ms, and your cake be infinite!</p>
+    <p class="hero-subtitle">Celebrating Carol 😊, the coolest Python Developer & most amazing person ever! May your code run bug-free, your APIs respond in 1ms, and your cake be infinite!</p>
     
     <div class="header-decor">
       <span class="decor-line"></span>
@@ -2113,6 +2264,26 @@ button, a, .card, .candle, .balloon {
         <span class="sub-tag">PYTHON DEV CONSOLE</span>
         <h2>Carol's Birthday Terminal 🐍💻</h2>
         <p>Run Python commands to execute birthday scripts and test suites!</p>
+      </div>
+
+      <!-- 3D ARROW TERMINAL RUN CODE WARNING BANNER -->
+      <div class="terminal-3d-notice">
+        <div class="terminal-3d-notice-content">
+          <div class="notice-warning-icon">⚠️</div>
+          <div class="notice-text-block">
+            <div class="notice-title">
+              <span class="notice-title-badge">⚡ ATTENTION CAROL: RUN PYTHON CODE</span>
+              <span>Execute Terminal Commands Below!</span>
+            </div>
+            <div class="notice-desc">
+              Click the action buttons or type commands to run <code class="notice-code-highlight">python3 celebrate.py</code>, <code class="notice-code-highlight">python secret.py</code>, and <code class="notice-code-highlight">pytest test_carol.py</code>!
+            </div>
+          </div>
+        </div>
+        <div class="arrow-3d-container">
+          <span class="arrow-3d-mark">👇</span>
+          <span class="arrow-3d-label">RUN CODE HERE!</span>
+        </div>
       </div>
 
       <div class="terminal-window">
@@ -2183,7 +2354,7 @@ button, a, .card, .candle, .balloon {
           </div>
         </div>
 
-        <!-- Gift 2: Free Food Voucher -->
+        <!-- Gift 2: VIP Rant & Debug Pass -->
         <div class="gift-card" data-gift="care-voucher">
           <div class="gift-box-wrapper">
             <div class="gift-box box-gold">
@@ -2193,7 +2364,7 @@ button, a, .card, .candle, .balloon {
               <div class="gift-body">
                 <div class="gift-ribbon-vertical"></div>
                 <div class="gift-ribbon-horizontal"></div>
-                <div class="gift-tag">FOOD RAID</div>
+                <div class="gift-tag">DEBUG & RANT</div>
               </div>
             </div>
           </div>
@@ -2300,6 +2471,51 @@ button, a, .card, .candle, .balloon {
           <div class="gift-label">
             <h3>Box #7</h3>
             <span class="click-hint">✨ Subtle Note</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MYNTRA GIFT COUPON QR CODE SECTION -->
+    <section class="myntra-qr-section" id="myntraQrSection">
+      <div class="section-title">
+        <span class="sub-tag">EXCLUSIVE SHOPPING REWARD</span>
+        <h2>Myntra Gift Coupon 🛍️🎁</h2>
+        <p>Scan the QR code with your camera or tap below to claim your Myntra Gift Voucher!</p>
+      </div>
+
+      <div class="myntra-card-wrapper">
+        <div class="myntra-card" id="myntraCardBtn">
+          <!-- Card Header / Brand Logo -->
+          <div class="myntra-card-header">
+            <div class="myntra-logo-badge">
+              <span class="myntra-logo-m">M</span>
+              <span class="myntra-brand-name">Myntra</span>
+            </div>
+            <span class="myntra-voucher-tag">₹5,000 GIFT VOUCHER</span>
+          </div>
+
+          <!-- Main QR Container with Laser Scan effect -->
+          <div class="myntra-qr-box">
+            <div class="qr-scanner-frame">
+              <div class="qr-laser-line"></div>
+              <img id="myntraQrImg" src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=Give%20me%20treat%20to%20claim%20the%20voucher!%20%F0%9F%98%82%F0%9F%A4%A3%F0%9F%98%86" alt="Scan Myntra Gift Coupon QR Code" class="qr-image" />
+            </div>
+            <div class="qr-scan-prompt">
+              <span class="scan-icon">📱</span>
+              <span>SCAN WITH CAMERA OR TAP TO REVEAL</span>
+            </div>
+          </div>
+
+          <!-- Card Details Footer -->
+          <div class="myntra-card-footer">
+            <div class="myntra-details">
+              <span class="myntra-card-holder">RECIPIENT: CAROL</span>
+              <span class="myntra-card-status">STATUS: UNCLAIMED ⚡</span>
+            </div>
+            <button class="btn-myntra-claim" id="btnMyntraClaim">
+              <span>🎁 Scan / Claim Coupon</span>
+            </button>
           </div>
         </div>
       </div>
@@ -2425,11 +2641,11 @@ button, a, .card, .candle, .balloon {
             <div class="card-front">
               <div class="card-number">07</div>
               <div class="card-icon">🌸</div>
-              <h3>Flawless Beauty 😊</h3>
+              <h3>Radiant Smile ✨</h3>
               <p>Click to flip</p>
             </div>
             <div class="card-back">
-              <p>“To Flawless Beauty Carol 😊 — Your warmth, kindness, brilliant mind, and radiant smile bring joy to everyone around you!”</p>
+              <p>“To Carol 😊 — Your warmth, kindness, brilliant mind, and radiant smile bring joy to everyone around you!”</p>
               <div class="card-heart">💖</div>
             </div>
           </div>
@@ -2440,7 +2656,7 @@ button, a, .card, .candle, .balloon {
       <div class="section-title">
         <span class="sub-tag">OFFICIAL BIRTHDAY RECOGNITION</span>
         <h2>Certificate of Excellence 📜✨</h2>
-        <p>An official honor awarded to Carol for extraordinary brilliance & flawless beauty!</p>
+        <p>An official honor awarded to Carol for extraordinary brilliance & wonderful spirit!</p>
       </div>
 
       <div class="certificate-wrapper">
@@ -2465,20 +2681,20 @@ button, a, .card, .candle, .balloon {
 
               <!-- Recipient Name with Laughing Smiley -->
               <div class="cert-recipient-box">
-                <h2 class="cert-recipient-name">Flawless Beauty Carol 😆✨</h2>
+                <h2 class="cert-recipient-name">"Flawless Beauty" Carol 😂 🤪</h2>
                 <div class="cert-role-title">Senior Python Wizard & Chief Bug Slayer</div>
               </div>
 
               <!-- Citation Statement -->
               <div class="cert-body-text">
-                <p>In recognition of her <strong>flawless beauty 🌸</strong>, legendary Python engineering brilliance 🐍, contagious laughter 😆, zero-bug code delivery, and bringing unmatched positive energy, smile, and joy to everyone around her!</p>
+                <p>In recognition of her legendary Python engineering brilliance 🐍, contagious laughter 😆, zero-bug code delivery, and bringing unmatched positive energy, smile, and joy to everyone around her!</p>
               </div>
 
               <!-- Award Badges Grid -->
               <div class="cert-badges-row">
                 <div class="cert-badge-item">
                   <span class="cert-badge-icon">🌸</span>
-                  <span class="cert-badge-label">Flawless Beauty</span>
+                  <span class="cert-badge-label">Radiant Smile</span>
                 </div>
                 <div class="cert-badge-item">
                   <span class="cert-badge-icon">🐍</span>
@@ -2516,7 +2732,7 @@ button, a, .card, .candle, .balloon {
                 </div>
               </div>
 
-              <div class="cert-id-tag">OFFICIAL ID: CAROL-24-SEP-2026-FLAWLESS-BEAUTY-😆</div>
+              <div class="cert-id-tag">OFFICIAL ID: CAROL-24-SEP-2026-PYTHON-WIZARD-👑</div>
 
             </div>
           </div>
@@ -2574,7 +2790,7 @@ button, a, .card, .candle, .balloon {
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <p>Crafted for Flawless Beauty <strong>Carol 😊</strong> on her Special Day! 🥳🎉🐍</p>
+    <p>Crafted for <strong>Carol 😊</strong> on her Special Day! 🥳🎉🐍</p>
     <p class="footer-sub">Happy Birthday Carol!</p>
   </footer>
 
@@ -2697,7 +2913,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const konkaniLyrics = [
         "🌴 Tuka Waddivasacho Mogal Parboo, Carol! 🌺",
-        "🌸 Flawless Beauty Carol 😊 — Waddivasache Xubhakamona! ✨",
+        "🌸 Dearest Carol 😊 — Waddivasache Xubhakamona! ✨",
         "🎶 Waddivasache Bhaitt Ani Xubhakamona, Carol! ✨",
         "🥳 Sodanch Hasso, Sodanch Devayen Upkar Meltolo! 🙏",
         "🎂 Dev Tuka Bhorpur Kushi Ani Porbol Assonk Dinv! 💖"
@@ -3624,13 +3840,13 @@ document.addEventListener('DOMContentLoaded', () => {
       `
     },
     'care-voucher': {
-      badge: 'FREE FOOD VOUCHER 🍕',
-      icon: '☕🍕',
-      title: 'Free Coffee & Pizza Raid Pass',
+      badge: 'VIP RANT & DEBUG PASS 🍿💻',
+      icon: '🍿🐛',
+      title: 'Unlimited Rant & Python Debugging Pass',
       content: `
-        <p style="font-size: 1.3rem; line-height: 1.6;">Valid for <strong>1 Free Coffee & Pizza Hangout Session</strong> where I pay for everything! Just screenshot this card when we meet next.</p>
+        <p style="font-size: 1.3rem; line-height: 1.6;">Valid for <strong>unlimited emergency 3 AM Python debugging</strong> OR unlimited hours of complaining about code bugs & crazy days while I bring snacks and nod in 100% agreement!</p>
         <div class="modal-highlight-box">
-          ☕ No expiry date. Redeem whenever you need a fun break!
+          🍿 100% judgment-free zone & instant bug fixes. Redeem whenever you need a break! 😂
         </div>
       `
     },
@@ -3702,6 +3918,25 @@ document.addEventListener('DOMContentLoaded', () => {
           &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #7ee787;">favorite_person</span> = <span style="color: #a5d6ff;">"Carol"</span>  <span style="color: #8b949e;"># Read-only Constant</span>
         </div>
       `
+    },
+    'myntra-qr': {
+      badge: '🛍️ MYNTRA GIFT VOUCHER UNLOCKED',
+      icon: '🛍️😂',
+      title: 'Myntra ₹5,000 Shopping Coupon!',
+      content: `
+        <div style="text-align: center; padding: 10px 0;">
+          <div style="font-size: 4rem; margin-bottom: 12px; animation: warningShake 1.5s infinite;">😂 🤣 😆</div>
+          <h2 style="font-size: 1.9rem; color: #ff3f6c; font-weight: 800; margin-bottom: 15px; text-shadow: 0 2px 8px rgba(255,63,108,0.4);">
+            “Give me treat to claim the voucher!” 😂 🤣
+          </h2>
+          <p style="font-size: 1.2rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 20px;">
+            To activate your official <strong>₹5,000 Myntra Shopping Voucher</strong>, give me a treat first! 🥳✨
+          </p>
+          <div class="modal-highlight-box" style="border-color: #ff3f6c; color: #fbbf24;">
+            🛍️ Voucher Terms: Give me treat to claim voucher! 100% Non-negotiable! 😂🎉
+          </div>
+        </div>
+      `
     }
   };
 
@@ -3716,6 +3951,19 @@ document.addEventListener('DOMContentLoaded', () => {
       
       openGiftModal(giftId, card);
     });
+  });
+
+  const myntraCardBtn = document.getElementById('myntraCardBtn');
+  const btnMyntraClaim = document.getElementById('btnMyntraClaim');
+
+  function triggerMyntraPrankModal() {
+    openGiftModal('myntra-qr', null);
+  }
+
+  if (myntraCardBtn) myntraCardBtn.addEventListener('click', triggerMyntraPrankModal);
+  if (btnMyntraClaim) btnMyntraClaim.addEventListener('click', (e) => {
+    e.stopPropagation();
+    triggerMyntraPrankModal();
   });
 
   function openGiftModal(giftId, card) {
