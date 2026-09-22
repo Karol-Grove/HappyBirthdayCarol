@@ -89,7 +89,6 @@ body {
   line-height: 1.6;
 }
 
-/* Accessible focus ring */
 :focus-visible {
   outline: 2px solid var(--primary-gold-bright);
   outline-offset: 3px;
@@ -478,7 +477,6 @@ section {
   margin: 0 auto;
 }
 
-/* Standard Glass Card Component */
 .glass-panel {
   background: var(--bg-card);
   backdrop-filter: blur(16px);
@@ -778,7 +776,6 @@ section {
   50% { transform: translateY(6px); }
 }
 
-/* Terminal Window Frame */
 .terminal-window {
   background: #090b16;
   border: 1px solid rgba(255, 255, 255, 0.15);
@@ -1072,7 +1069,6 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Gift Box Color Variations */
 .box-gold .gift-lid, .box-gold .gift-body {
   background: linear-gradient(135deg, #f59e0b, #b45309);
 }
@@ -2311,7 +2307,7 @@ section {
       </div>
 
       <div class="gifts-grid">
-        <!-- Gift 1: The Main Funny Best Friend Gift -->
+        <!-- Gift 1 -->
         <div class="gift-card" data-gift="life-gift" role="button" tabindex="0" aria-label="Gift Box 1: For Carol">
           <div class="gift-box-wrapper">
             <div class="gift-box">
@@ -2331,7 +2327,7 @@ section {
           </div>
         </div>
 
-        <!-- Gift 2: VIP Rant & Debug Pass -->
+        <!-- Gift 2 -->
         <div class="gift-card" data-gift="care-voucher" role="button" tabindex="0" aria-label="Gift Box 2: Debug and Rant">
           <div class="gift-box-wrapper">
             <div class="gift-box box-gold">
@@ -2351,7 +2347,7 @@ section {
           </div>
         </div>
 
-        <!-- Gift 3: You Are Always Right -->
+        <!-- Gift 3 -->
         <div class="gift-card" data-gift="always-right" role="button" tabindex="0" aria-label="Gift Box 3: You Win">
           <div class="gift-box-wrapper">
             <div class="gift-box box-purple">
@@ -2371,7 +2367,7 @@ section {
           </div>
         </div>
 
-        <!-- Gift 4: Friendly Health Maintenance -->
+        <!-- Gift 4 -->
         <div class="gift-card" data-gift="happiness-pass" role="button" tabindex="0" aria-label="Gift Box 4: Body Care">
           <div class="gift-box-wrapper">
             <div class="gift-box box-emerald">
@@ -2391,7 +2387,7 @@ section {
           </div>
         </div>
 
-        <!-- Gift 5: Code Ninja Power Pack -->
+        <!-- Gift 5 -->
         <div class="gift-card" data-gift="python-dev" role="button" tabindex="0" aria-label="Gift Box 5: Code Ninja">
           <div class="gift-box-wrapper">
             <div class="gift-box box-python">
@@ -2411,7 +2407,7 @@ section {
           </div>
         </div>
 
-        <!-- Gift 6: Heavenly Blessings -->
+        <!-- Gift 6 -->
         <div class="gift-card" data-gift="divine-blessing" role="button" tabindex="0" aria-label="Gift Box 6: Mangalore Blessing">
           <div class="gift-box-wrapper">
             <div class="gift-box box-blessing">
@@ -2431,7 +2427,7 @@ section {
           </div>
         </div>
 
-        <!-- Gift 7: The Secret Easter Egg Box -->
+        <!-- Gift 7 -->
         <div class="gift-card" data-gift="secret-feelings" role="button" tabindex="0" aria-label="Gift Box 7: Easter Egg">
           <div class="gift-box-wrapper">
             <div class="gift-box box-gold">
@@ -2591,10 +2587,14 @@ section {
         <div class="wish-card" role="button" tabindex="0" aria-label="Card 05: Bug Creator">
           <div class="card-inner">
             <div class="card-front">
-              <div class="card-number">05</div>
-              <div class="card-icon" aria-hidden="true">🐛</div>
-              <h3>Bug Creator 🐛</h3>
-              <p>Click to flip</p>
+              <div class="card-inner">
+                <div class="card-front">
+                  <div class="card-number">05</div>
+                  <div class="card-icon" aria-hidden="true">🐛</div>
+                  <h3>Bug Creator 🐛</h3>
+                  <p>Click to flip</p>
+                </div>
+              </div>
             </div>
             <div class="card-back">
               <p>“<code>try: eat_cake() except Error: blame_server()</code> — May your pull requests be merged before you break the staging server again! 🤪”</p>
@@ -2806,7 +2806,7 @@ section {
 
   <script>
 /* ==========================================================================
-   CAROL'S BIRTHDAY CELEBRATION SCRIPT (HIGH PERFORMANCE INTERACTIVE ENGINE)
+   CAROL'S BIRTHDAY CELEBRATION SCRIPT (CINEMATIC INTERACTIVE SOUND ENGINE)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -2855,6 +2855,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPrintCertificate = document.getElementById('btnPrintCertificate');
   const btnConfettiCert = document.getElementById('btnConfettiCert');
   const wishCards = document.querySelectorAll('.wish-card');
+  const foreverGiftSection = document.getElementById('foreverGiftSection');
 
   let popScore = 0;
   let isAudioPlaying = false;
@@ -2864,19 +2865,29 @@ document.addEventListener('DOMContentLoaded', () => {
   let pendingAction = null;
   let blownCount = 0;
 
+  // Rate limiting & state tracking for sounds
+  let lastBalloonSoundTime = 0;
+  let hasPlayedCertCelebrate = false;
+  let hasPlayedFinalChime = false;
+
   // ==========================================================================
-  // WEB AUDIO API SYNTHESIZER & SOUND EFFECTS
+  // CENTRALIZED CINEMATIC SOUND MANAGER (WEB AUDIO API)
+  // "Silence for normal interactions. Sound only when something meaningful happens."
   // ==========================================================================
 
   function initAudioContext() {
     if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      const AudioCtxClass = window.AudioContext || window.webkitAudioContext;
+      if (AudioCtxClass) {
+        audioCtx = new AudioCtxClass();
+      }
     }
   }
 
   function playTone(freq, duration, type = 'sine', gainVal = 0.1) {
     try {
       initAudioContext();
+      if (!audioCtx) return;
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
@@ -2895,26 +2906,197 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function playPopSound() {
-    playTone(420, 0.09, 'triangle', 0.22);
-    setTimeout(() => playTone(820, 0.07, 'sine', 0.2), 30);
+  function playUISound(type) {
+    try {
+      initAudioContext();
+      if (!audioCtx) return;
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const t = audioCtx.currentTime;
+
+      switch (type) {
+        case 'candle_celebrate': {
+          // One short, warm, soft magical chime (0.5 - 1.2s)
+          const chord = [392.00, 493.88, 587.33, 783.99, 987.77]; // G4, B4, D5, G5, B5
+          chord.forEach((freq, i) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + i * 0.05);
+            gain.gain.setValueAtTime(0.0001, t + i * 0.05);
+            gain.gain.linearRampToValueAtTime(0.055, t + i * 0.05 + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + i * 0.05 + 0.85);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + i * 0.05);
+            osc.stop(t + i * 0.05 + 0.9);
+          });
+          break;
+        }
+
+        case 'gift_open': {
+          // Very subtle gift-opening sound with tiny randomized pitch variation
+          const detune = (Math.random() - 0.5) * 36;
+          const freqs = [659.25 + detune, 987.77 + detune]; // E5, B5
+          freqs.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + idx * 0.04);
+            gain.gain.setValueAtTime(0.0001, t + idx * 0.04);
+            gain.gain.linearRampToValueAtTime(0.04, t + idx * 0.04 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.04 + 0.28);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + idx * 0.04);
+            osc.stop(t + idx * 0.04 + 0.3);
+          });
+          break;
+        }
+
+        case 'balloon_pop': {
+          // Extremely soft pop. 100ms cooldown to protect mobile performance
+          const now = Date.now();
+          if (now - lastBalloonSoundTime < 100) return;
+          lastBalloonSoundTime = now;
+
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(180, t);
+          osc.frequency.exponentialRampToValueAtTime(60, t + 0.04);
+          gain.gain.setValueAtTime(0.055, t);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.04);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(t);
+          osc.stop(t + 0.045);
+          break;
+        }
+
+        case 'terminal_success': {
+          // Special command execution: tiny elegant confirmation (< 0.3s)
+          const tones = [587.33, 880.00]; // D5, A5
+          tones.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + idx * 0.06);
+            gain.gain.setValueAtTime(0.0001, t + idx * 0.06);
+            gain.gain.linearRampToValueAtTime(0.038, t + idx * 0.06 + 0.015);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.06 + 0.16);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + idx * 0.06);
+            osc.stop(t + idx * 0.06 + 0.18);
+          });
+          break;
+        }
+
+        case 'voucher_reveal': {
+          // One subtle premium confirmation chime
+          const chord = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          chord.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + idx * 0.05);
+            gain.gain.setValueAtTime(0.0001, t + idx * 0.05);
+            gain.gain.linearRampToValueAtTime(0.045, t + idx * 0.05 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.05 + 0.45);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + idx * 0.05);
+            osc.stop(t + idx * 0.05 + 0.5);
+          });
+          break;
+        }
+
+        case 'vault_unlock': {
+          // Soft lock click + subtle magical confirmation ("Secret unlocked")
+          const clickOsc = audioCtx.createOscillator();
+          const clickGain = audioCtx.createGain();
+          clickOsc.type = 'triangle';
+          clickOsc.frequency.setValueAtTime(1100, t);
+          clickGain.gain.setValueAtTime(0.04, t);
+          clickGain.gain.exponentialRampToValueAtTime(0.0001, t + 0.02);
+          clickOsc.connect(clickGain);
+          clickGain.connect(audioCtx.destination);
+          clickOsc.start(t);
+          clickOsc.stop(t + 0.025);
+
+          const chimes = [587.33, 739.99, 880.00]; // D5, F#5, A5
+          chimes.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + 0.04 + idx * 0.08);
+            gain.gain.setValueAtTime(0.0001, t + 0.04 + idx * 0.08);
+            gain.gain.linearRampToValueAtTime(0.05, t + 0.04 + idx * 0.08 + 0.025);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + 0.04 + idx * 0.08 + 0.6);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + 0.04 + idx * 0.08);
+            osc.stop(t + 0.04 + idx * 0.08 + 0.65);
+          });
+          break;
+        }
+
+        case 'cert_celebrate': {
+          // One tasteful celebratory sound, duplicate playback prevented
+          if (hasPlayedCertCelebrate) return;
+          hasPlayedCertCelebrate = true;
+          setTimeout(() => { hasPlayedCertCelebrate = false; }, 4000);
+
+          const chord = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+          chord.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + idx * 0.07);
+            gain.gain.setValueAtTime(0.0001, t + idx * 0.07);
+            gain.gain.linearRampToValueAtTime(0.045, t + idx * 0.07 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.07 + 0.65);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + idx * 0.07);
+            osc.stop(t + idx * 0.07 + 0.7);
+          });
+          break;
+        }
+
+        case 'final_note': {
+          // Cinematic emotional chime for the final special note
+          if (hasPlayedFinalChime) return;
+          hasPlayedFinalChime = true;
+
+          const chord = [349.23, 440.00, 523.25, 659.25, 783.99]; // F4, A4, C5, E5, G5
+          chord.forEach((freq, idx) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, t + idx * 0.08);
+            gain.gain.setValueAtTime(0.0001, t + idx * 0.08);
+            gain.gain.linearRampToValueAtTime(0.038, t + idx * 0.08 + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.08 + 1.2);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(t + idx * 0.08);
+            osc.stop(t + idx * 0.08 + 1.25);
+          });
+          break;
+        }
+      }
+    } catch (e) {
+      // Continue gracefully without audio errors
+    }
   }
 
-  function playFanfare() {
-    const notes = [523.25, 659.25, 783.99, 1046.50, 880, 1046.50];
-    notes.forEach((freq, index) => {
-      setTimeout(() => {
-        playTone(freq, 0.35, 'triangle', 0.25);
-      }, index * 120);
-    });
-  }
+  // ==========================================================================
+  // BACKGROUND KONKANI MUSIC (INDEPENDENT PLAYBACK LAYER)
+  // ==========================================================================
 
-  function playCandleBlowSound() {
-    playTone(320, 0.2, 'sine', 0.15);
-    setTimeout(() => playTone(180, 0.4, 'sine', 0.12), 100);
-  }
-
-  // Konkani Celebratory Melodic Loop
   function toggleBirthdayMusic() {
     initAudioContext();
     if (audioCtx && audioCtx.state === 'suspended') {
@@ -3000,9 +3182,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  // --------------------------------------------------------------------------
-  // BACKGROUND SPARKLES ENGINE (OPTIMIZED)
-  // --------------------------------------------------------------------------
+  // Background Sparkles Engine
   const sparkles = [];
   const sparkleCount = window.innerWidth < 768 ? 25 : 45;
   for (let i = 0; i < sparkleCount; i++) {
@@ -3035,9 +3215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   renderSparkles();
 
-  // --------------------------------------------------------------------------
-  // CONFETTI ENGINE (PHYSICS & MULTI-SHAPE)
-  // --------------------------------------------------------------------------
+  // Confetti Engine
   let confettiParticles = [];
   function launchConfetti(count = 60) {
     if (confettiParticles.length > 120) return;
@@ -3063,7 +3241,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const p = confettiParticles[idx];
       p.x += p.vx;
       p.y += p.vy;
-      p.vy += 0.36; // gravity
+      p.vy += 0.36;
       p.rotation += p.rSpeed;
 
       ctxC.save();
@@ -3096,20 +3274,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   confettiBurstBtn.addEventListener('click', () => {
     launchConfetti(70);
-    playFanfare();
   });
 
-  // --------------------------------------------------------------------------
-  // CHOCOLATE SHOWER & DRIZZLE ENGINE
-  // --------------------------------------------------------------------------
+  // Chocolate Shower Engine
   let chocolateDrops = [];
-  let chocoSplashes = [];
   let isDrizzlingChocolate = false;
-  let curtainProgress = 0;
   let chocolateInterval = null;
 
   function spawnChocolateDrop(customY = null) {
-    const types = ['bar', 'truffle', 'kiss', 'stream'];
+    const types = ['bar', 'truffle'];
     const type = types[Math.floor(Math.random() * types.length)];
     chocolateDrops.push({
       x: Math.random() * width,
@@ -3118,7 +3291,6 @@ document.addEventListener('DOMContentLoaded', () => {
       type: type,
       width: type === 'bar' ? (Math.random() * 8 + 18) : (Math.random() * 6 + 14),
       height: type === 'bar' ? (Math.random() * 12 + 24) : (Math.random() * 8 + 16),
-      length: type === 'stream' ? (Math.random() * 35 + 45) : 0,
       sway: Math.random() * 1.5 + 0.5,
       angle: Math.random() * Math.PI * 2,
       rotSpeed: (Math.random() - 0.5) * 0.05,
@@ -3135,9 +3307,6 @@ document.addEventListener('DOMContentLoaded', () => {
       chocoDrizzleBtn.classList.add('drizzling');
     }
 
-    try { playFanfare(); } catch (e) {}
-
-    // Initial burst
     for (let i = 0; i < 20; i++) {
       spawnChocolateDrop(-20 - Math.random() * 120);
     }
@@ -3169,7 +3338,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ctx.fillStyle = item.isDark ? '#3d1c06' : '#5c2d12';
     ctx.fillRect(-w/2, -h/2, w, h);
 
-    // Inner detail
     ctx.fillStyle = item.isDark ? '#261004' : '#45200b';
     ctx.fillRect(-w/2 + 2, -h/2 + 2, w - 4, h - 4);
 
@@ -3231,19 +3399,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // CHAPTER 1: CANDLE BLOWING INTERACTION
+  // CHAPTER 1: CANDLE INTERACTION
+  // Normal candle click is silent. One soft magical chime plays only on completion.
   // ==========================================================================
 
   function blowCandle(candle) {
     if (!candle.classList.contains('out')) {
       candle.classList.add('out');
       blownCount++;
-      playCandleBlowSound();
 
       if (blownCount === candles.length) {
         wishStatusText.innerHTML = "Wish made! May your year be filled with zero bugs, endless laughs, and infinite chocolate, Carol! 🥳🎂🐍🍫";
         wishStatusText.style.color = "#f59e0b";
-        playFanfare();
+        playUISound('candle_celebrate');
         launchConfetti(70);
         triggerChocolateShower(4000);
       } else {
@@ -3269,8 +3437,7 @@ document.addEventListener('DOMContentLoaded', () => {
       blownCount = candles.length;
       wishStatusText.innerHTML = "Wish made! May your year be filled with zero bugs, endless laughs, and infinite chocolate, Carol! 🥳🎂🐍🍫";
       wishStatusText.style.color = "#f59e0b";
-      playCandleBlowSound();
-      playFanfare();
+      playUISound('candle_celebrate');
       launchConfetti(70);
       triggerChocolateShower(4000);
     }
@@ -3278,6 +3445,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================================================
   // CHAPTER 2: CAROL'S PYTHON TERMINAL ENGINE
+  // Normal clicks/typing are silent. Only successful special commands give tiny confirmation.
   // ==========================================================================
 
   function appendTerminalLine(htmlContent) {
@@ -3290,7 +3458,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function runPythonCelebrate() {
-    playPopSound();
     appendTerminalLine(`<span class="t-prompt">carol@dev-laptop:~$</span> <span class="t-cmd">python3 celebrate.py</span>`);
     setTimeout(() => {
       appendTerminalLine(`<span class="t-comment"># Executing Carol's Birthday Core Engine v2.0...</span>`);
@@ -3299,12 +3466,12 @@ document.addEventListener('DOMContentLoaded', () => {
       appendTerminalLine(`    <span class="t-keyword">assert</span> carol.is_awesome == <span class="t-keyword">True</span>`);
       appendTerminalLine(`    <span class="t-keyword">return</span> <span class="t-string">"Infinite Happiness & Bug-Free Life!"</span>`);
       appendTerminalLine(`<span class="t-success">[SUCCESS] Carol upgraded to Version 2.0! All tests passed! 🐍🎉</span>`);
+      playUISound('terminal_success');
       launchConfetti(60);
     }, 150);
   }
 
   function runPipInstall() {
-    playPopSound();
     appendTerminalLine(`<span class="t-prompt">carol@dev-laptop:~$</span> <span class="t-cmd">pip install unlimited-coffee-and-cake</span>`);
     setTimeout(() => {
       appendTerminalLine(`Collecting unlimited-coffee-and-cake...`);
@@ -3314,26 +3481,24 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function runPytest() {
-    playPopSound();
     appendTerminalLine(`<span class="t-prompt">carol@dev-laptop:~$</span> <span class="t-cmd">pytest -v test_carol.py</span>`);
     setTimeout(() => {
       appendTerminalLine(`test_carol.py::<span class="t-cmd">test_python_skills</span> <span class="t-success">PASSED [33%]</span>`);
       appendTerminalLine(`test_carol.py::<span class="t-cmd">test_favorite_person</span> <span class="t-success">PASSED [67%]</span>`);
       appendTerminalLine(`test_carol.py::<span class="t-cmd">test_zero_bugs_this_year</span> <span class="t-success">PASSED [100%]</span>`);
       appendTerminalLine(`<span class="t-success">================ 3 passed in 0.02s ================</span>`);
-      playFanfare();
+      playUISound('terminal_success');
     }, 150);
   }
 
   function executeSecretTerminal() {
-    playPopSound();
     appendTerminalLine(`<span class="t-prompt">carol@dev-laptop:~$</span> <span class="t-cmd">python secret.py</span>`);
     appendTerminalLine(`<span class="t-comment"># Identity Verified: Carol. Scanning codebase for hidden Easter eggs...</span>`);
     setTimeout(() => {
       appendTerminalLine(`<span class="t-string">"Among 8 Billion People, You're My Favorite Exception." 🌟</span>`);
       appendTerminalLine(`<span class="t-success">[NOTE DECRYPTED] Carol = The person who secretly brightens up every single day! ☕✨</span>`);
       appendTerminalLine(`<span class="t-success">================ 1 Hidden Easter Egg Unlocked ================</span>`);
-      playFanfare();
+      playUISound('terminal_success');
       launchConfetti(80);
       triggerChocolateShower(4000);
     }, 150);
@@ -3372,7 +3537,6 @@ document.addEventListener('DOMContentLoaded', () => {
             appendTerminalLine(`<span class="t-comment"># Carol's Custom Python Command Executed Successfully! ⚡</span>`);
           }
           pyInput.value = '';
-          playPopSound();
         }
       }
     });
@@ -3380,6 +3544,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================================================
   // CAROL'S VAULT SECURITY AUTHENTICATION
+  // Success plays soft lock click + subtle magical confirmation. Failure is silent.
   // ==========================================================================
 
   function requestCarolAuthentication(onSuccessCallback) {
@@ -3402,7 +3567,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (validPasscodes.includes(inputVal)) {
       isCarolVerified = true;
       if (lockModal) lockModal.classList.add('hidden');
-      playFanfare();
+      playUISound('vault_unlock');
       if (typeof pendingAction === 'function') {
         const action = pendingAction;
         pendingAction = null;
@@ -3412,7 +3577,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (lockErrorMsg) {
         lockErrorMsg.textContent = "⛔ Access Denied! Vault encrypted for Carol's eyes only! 🔒";
       }
-      playPopSound();
+      // Failure is intentionally silent to avoid annoying error beeps
       if (lockPassInput) {
         lockPassInput.style.borderColor = '#f43f5e';
         setTimeout(() => { if (lockPassInput) lockPassInput.style.borderColor = ''; }, 1200);
@@ -3443,6 +3608,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================================================
   // CHAPTER 3: INTERACTIVE GIFT UNBOXING SYSTEM
+  // Opening a gift plays a subtle rustle/sparkle with microscopic pitch variation.
   // ==========================================================================
 
   const giftData = {
@@ -3568,7 +3734,13 @@ document.addEventListener('DOMContentLoaded', () => {
       modalContent.innerHTML = data.content;
 
       giftModal.classList.remove('hidden');
-      playFanfare();
+
+      if (giftId === 'myntra-qr') {
+        playUISound('voucher_reveal');
+      } else {
+        playUISound('gift_open');
+      }
+
       launchConfetti(70);
       triggerChocolateShower(3000);
     }
@@ -3604,11 +3776,11 @@ document.addEventListener('DOMContentLoaded', () => {
     triggerMyntraPrankModal();
   });
 
+  // Ordinary modal close / claim is silent
   modalCloseBtn.addEventListener('click', () => giftModal.classList.add('hidden'));
   claimGiftBtn.addEventListener('click', () => {
     giftModal.classList.add('hidden');
     launchConfetti(80);
-    playPopSound();
   });
 
   giftModal.addEventListener('click', (e) => {
@@ -3617,6 +3789,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ==========================================================================
   // CHAPTER 5: BALLOON MINI GAME
+  // Soft pop with strict rate-limiting (100ms cooldown) to protect mobile performance
   // ==========================================================================
 
   const balloonColors = ['#ec4899', '#8b5cf6', '#f59e0b', '#10b981', '#38bdf8', '#f43f5e'];
@@ -3633,7 +3806,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function popThisBalloon(e) {
       e.stopPropagation();
-      playPopSound();
+      playUISound('balloon_pop');
       popScore++;
       popCountEl.textContent = popScore;
       launchConfetti(25);
@@ -3643,7 +3816,6 @@ document.addEventListener('DOMContentLoaded', () => {
     balloon.addEventListener('click', popThisBalloon);
     balloon.addEventListener('touchstart', popThisBalloon, { passive: true });
 
-    // Clean up when animation ends
     setTimeout(() => {
       if (balloon.parentNode === balloonStage) {
         balloon.remove();
@@ -3656,26 +3828,26 @@ document.addEventListener('DOMContentLoaded', () => {
   setInterval(spawnBalloon, 1400);
 
   // ==========================================================================
-  // CHAPTER 6: WISH CARDS 3D FLIP LOGIC
+  // CHAPTER 6: WISH CARDS (FRIENDSHIP NOTES)
+  // Completely silent flip animation. Focus is 100% on the emotional messages.
   // ==========================================================================
 
   wishCards.forEach(card => {
     card.addEventListener('click', () => {
       card.classList.toggle('flipped');
-      playPopSound();
     });
 
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         card.classList.toggle('flipped');
-        playPopSound();
       }
     });
   });
 
   // ==========================================================================
   // CHAPTER 7: CERTIFICATE ACTIONS
+  // Print is silent. Celebrate Carol triggers one tasteful celebratory sound.
   // ==========================================================================
 
   if (btnPrintCertificate) {
@@ -3687,8 +3859,25 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnConfettiCert) {
     btnConfettiCert.addEventListener('click', () => {
       launchConfetti(80);
-      playFanfare();
+      playUISound('cert_celebrate');
     });
+  }
+
+  // ==========================================================================
+  // CHAPTER 8: FINAL SPECIAL NOTE REVEAL
+  // Subtle emotional chime triggered gently when scrolled into view
+  // ==========================================================================
+
+  if (foreverGiftSection && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasPlayedFinalChime) {
+          playUISound('final_note');
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.35 });
+    observer.observe(foreverGiftSection);
   }
 });
   </script>
