@@ -1435,223 +1435,674 @@ body {
 }
 
 /* ==========================================================================
-   CHAPTER 7: OFFICIAL PRINTABLE CERTIFICATE OF HONOR (LUXURY ARTIFACT)
+   CHAPTER 7: CAROL'S BIRTHDAY TIME CAPSULE (LUXURY DIGITAL SCRAPBOOK)
+   "Some surprises are meant to be remembered."
    ========================================================================== */
-.certificate-section {
-  max-width: 960px;
+.time-capsule-section {
+  max-width: 1040px;
   margin: 0 auto;
-  padding: 100px 0 120px;
-}
-
-.certificate-wrapper {
-  padding: 8px;
-}
-
-.certificate-card {
-  background: #FAF7F0;
-  color: #1A1A1E;
-  border-radius: var(--radius-md);
-  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85);
+  padding: 80px 0 100px;
   position: relative;
+  width: 100%;
+}
+
+.capsule-experience-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==========================================
+   CLOSED CAPSULE PRESENTATION
+   ========================================== */
+.capsule-container {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto;
+  transition: all 0.7s var(--ease-apple);
+}
+
+.capsule-container.capsule-opened {
+  opacity: 0;
+  transform: scale(0.92) translateY(-20px);
+  pointer-events: none;
+  height: 0;
+  margin: 0;
   overflow: hidden;
 }
 
-.cert-border-outer {
-  border: 12px solid #1C1917;
-  padding: 8px;
-  background: #FAF7F0;
+.capsule-glow-aura {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(500px, 95vw);
+  height: 320px;
+  background: radial-gradient(circle, rgba(229, 200, 144, 0.16) 0%, rgba(121, 50, 130, 0.12) 45%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+  animation: capsuleAuraPulse 4s infinite ease-in-out alternate;
 }
 
-.cert-border-inner {
-  border: 2px double #C5A059;
-  padding: 44px 38px;
-  text-align: center;
+@keyframes capsuleAuraPulse {
+  0% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.7; }
+  100% { transform: translate(-50%, -50%) scale(1.08); opacity: 1; }
+}
+
+.capsule-box {
+  background: rgba(18, 14, 32, 0.85);
+  border: 1px solid rgba(229, 200, 144, 0.28);
+  border-radius: var(--radius-xl);
+  padding: 40px 32px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 1px rgba(229, 200, 144, 0.35);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
   position: relative;
-  background: radial-gradient(circle at center, #FFFFFF 65%, #F7F3E8 100%);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.4s var(--ease-apple), border-color 0.4s ease, box-shadow 0.4s ease;
 }
 
-.cert-header {
+.capsule-box:hover {
+  transform: translateY(-4px);
+  border-color: rgba(229, 200, 144, 0.5);
+  box-shadow: 0 35px 95px rgba(0, 0, 0, 0.85), 0 0 24px rgba(229, 200, 144, 0.18);
+}
+
+.capsule-meta-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid #C5A059;
-  padding-bottom: 16px;
-  margin-bottom: 28px;
-}
-
-.cert-org-logo {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-serif);
-  font-weight: 800;
-  font-size: 0.95rem;
-  color: #78350F;
-  letter-spacing: 1px;
-}
-
-.cert-title-badge {
-  background: #1C1917;
-  color: #FDE047;
+  margin-bottom: 26px;
+  font-family: var(--font-mono);
   font-size: 0.72rem;
-  letter-spacing: 2px;
-  font-weight: 800;
-  padding: 4px 14px;
-  border-radius: var(--radius-pill);
+  letter-spacing: 0.16em;
+  color: var(--text-muted);
 }
 
-.cert-main-title h1 {
-  font-family: var(--font-serif);
-  font-size: clamp(2.2rem, 5.5vw, 3.4rem);
-  font-weight: 800;
-  color: #1C1917;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.cert-subtitle-line {
-  font-size: 0.88rem;
-  letter-spacing: 4px;
-  color: #78716C;
-  font-weight: 700;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-}
-
-.cert-recipient-box {
-  margin-bottom: 24px;
-  padding: 8px 0;
-  border-bottom: 1px dashed #D6D3D1;
-}
-
-.cert-recipient-name {
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 4.8vw, 3rem);
-  color: #9D174D;
-  font-style: italic;
-  font-weight: 800;
-  margin-bottom: 6px;
-}
-
-.cert-role-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #854D0E;
-  letter-spacing: 1px;
-}
-
-.cert-body-text {
-  max-width: 680px;
-  margin: 0 auto 26px;
-  font-size: 1.1rem;
-  line-height: 1.75;
-  color: #44403C;
-}
-
-.cert-badges-row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-bottom: 32px;
-}
-
-.cert-badge-item {
-  background: #FEF9C3;
-  border: 1px solid #FDE047;
-  padding: 6px 18px;
-  border-radius: var(--radius-pill);
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 0.86rem;
-  font-weight: 700;
-  color: #854D0E;
-}
-
-.cert-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 28px;
-  padding-top: 16px;
-}
-
-.cert-sig-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 190px;
-}
-
-.cert-signature-line {
-  font-size: 1.25rem;
-  font-family: var(--font-serif);
-  font-weight: 700;
-  color: #1C1917;
-  border-bottom: 2px solid #78716C;
-  width: 100%;
-  padding-bottom: 4px;
-  margin-bottom: 6px;
-}
-
-.cert-signed-name {
-  font-family: var(--font-script);
-  font-size: 2.1rem;
-  color: #1E3A8A;
-}
-
-.cert-sig-label {
-  font-size: 0.74rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #78716C;
+.capsule-edition-tag {
+  color: var(--gold-champagne);
   font-weight: 600;
 }
 
-.cert-seal {
-  position: relative;
-  width: 86px;
-  height: 86px;
+.capsule-lock-status {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
 }
 
-.seal-circle {
-  width: 86px;
-  height: 86px;
-  background: radial-gradient(circle, #D4AF37, #9E7D2E);
-  border-radius: 50%;
+.capsule-emblem {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 22px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  border: 3px double #FFFDF0;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
-  font-size: 0.65rem;
-  font-weight: 800;
-  text-align: center;
-  line-height: 1.2;
 }
 
-.cert-id-tag {
-  margin-top: 22px;
-  font-size: 0.72rem;
-  color: #A8A29E;
-  letter-spacing: 1.8px;
-  font-family: var(--font-mono);
+.capsule-orbit-ring {
+  position: absolute;
+  inset: 0;
+  border: 1px dashed rgba(229, 200, 144, 0.4);
+  border-radius: 50%;
+  animation: orbitRotate 16s linear infinite;
 }
 
-.cert-actions {
+@keyframes orbitRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.capsule-core-icon {
+  font-size: 2.6rem;
+  filter: drop-shadow(0 0 16px rgba(229, 200, 144, 0.5));
+}
+
+.capsule-inscription h3 {
+  font-family: var(--font-serif);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-pure);
+  margin-bottom: 8px;
+}
+
+.capsule-inscription p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  max-width: 380px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.capsule-open-btn {
+  background: linear-gradient(135deg, rgba(229, 200, 144, 0.18) 0%, rgba(121, 50, 130, 0.35) 100%);
+  border: 1px solid rgba(229, 200, 144, 0.45);
+  color: #FFFDF8;
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  padding: 16px 36px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease-apple);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.capsule-open-btn:hover {
+  background: linear-gradient(135deg, rgba(229, 200, 144, 0.3) 0%, rgba(142, 45, 120, 0.5) 100%);
+  border-color: var(--gold-champagne);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 45px rgba(229, 200, 144, 0.28);
+}
+
+/* ==========================================
+   OPENED DIGITAL SCRAPBOOK ALBUM
+   ========================================== */
+.capsule-album {
+  width: 100%;
+  animation: albumReveal 0.8s var(--ease-apple) forwards;
+  position: relative;
+  opacity: 1;
+}
+
+.capsule-album.hidden {
+  display: none;
+}
+
+@keyframes albumReveal {
+  0% { opacity: 0; transform: scale(0.95) translateY(24px); filter: blur(10px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); filter: blur(0); }
+}
+
+/* TIMELINE NAV DIALS */
+.capsule-nav-bar {
   display: flex;
   justify-content: center;
-  gap: 18px;
-  margin-top: 32px;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  padding: 6px;
+  background: rgba(18, 14, 32, 0.65);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  max-width: 820px;
+  margin-left: auto;
+  margin-right: auto;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.cert-btn-print {
+.capsule-nav-tab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-secondary);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  min-height: 40px;
+}
+
+.capsule-nav-tab .nav-index {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--gold-champagne);
+}
+
+.capsule-nav-tab .nav-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.capsule-nav-tab:hover {
+  color: var(--text-pure);
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.capsule-nav-tab.active {
+  background: rgba(229, 200, 144, 0.14);
+  border-color: rgba(229, 200, 144, 0.35);
+  color: var(--gold-champagne-light);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+}
+
+.capsule-nav-tab.active .nav-index {
+  background: var(--gold-champagne);
+  color: #1A1325;
+}
+
+/* MEMORY CARDS STAGE */
+.capsule-stage {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  margin-bottom: 24px;
+}
+
+.capsule-memory-card {
+  display: none;
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  transition: opacity 0.5s var(--ease-apple), transform 0.5s var(--ease-apple), filter 0.5s var(--ease-apple);
+  filter: blur(4px);
+}
+
+.capsule-memory-card.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+  animation: memoryEntrance 0.65s var(--ease-apple) forwards;
+}
+
+@keyframes memoryEntrance {
+  0% { opacity: 0; transform: translateY(18px) scale(0.97); filter: blur(6px); }
+  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+.memory-card-inner {
+  background: rgba(18, 14, 32, 0.78);
+  border: 1px solid rgba(229, 200, 144, 0.22);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px 36px;
+  position: relative;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  overflow: hidden;
+}
+
+.memory-pin {
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #FFF6E5, #D4AF37 60%, #854D0E 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6), 0 0 6px rgba(229, 200, 144, 0.4);
+}
+
+.memory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+  padding-bottom: 14px;
+}
+
+.memory-num-badge {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  color: var(--gold-champagne);
+  font-weight: 700;
+}
+
+.memory-date-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.15em;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+}
+
+.memory-heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+  color: var(--text-pure);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 22px;
+}
+
+.memory-scrapbook-body {
+  font-size: 1.12rem;
+  line-height: 1.8;
+  color: var(--text-warm);
+  margin-bottom: 26px;
+}
+
+.memory-quote {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+  color: #F8F4EE;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.memory-subquote {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-top: 12px;
+}
+
+.memory-highlight-tape {
+  display: inline-block;
+  background: rgba(229, 200, 144, 0.08);
+  border-left: 3px solid var(--gold-champagne);
+  padding: 10px 16px;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.88rem;
+  color: var(--gold-champagne-light);
+  margin-top: 14px;
+}
+
+.memory-code-snippet {
+  background: rgba(10, 8, 18, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-sm);
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  margin-bottom: 18px;
+  text-align: left;
+}
+.memory-code-snippet .c-kw { color: #F472B6; font-weight: 600; }
+.memory-code-snippet .c-fn { color: var(--gold-champagne); }
+.memory-code-snippet .c-ret { color: #34D399; }
+.memory-code-snippet .c-str { color: #93C5FD; }
+
+/* MEMORY 04: GIFT SHELF */
+.memory-shelf-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+}
+
+.memory-shelf-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.shelf-pill {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-warm);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  min-height: 40px;
+}
+
+.shelf-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(229, 200, 144, 0.3);
+}
+
+.shelf-pill.active {
+  background: rgba(229, 200, 144, 0.16);
+  border-color: var(--gold-champagne);
+  color: var(--gold-champagne-light);
+  box-shadow: 0 4px 14px rgba(229, 200, 144, 0.15);
+}
+
+.shelf-preview-card {
+  background: rgba(10, 8, 18, 0.65);
+  border: 1px solid rgba(229, 200, 144, 0.25);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.shelf-preview-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-champagne);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.shelf-preview-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--text-pure);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.shelf-preview-text {
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #D1D5DB;
+}
+
+/* MEMORY 05: SCRAPBOOK POST-ITS */
+.scrapbook-postit {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+  text-align: left;
+  transition: transform 0.25s ease;
+}
+
+.scrapbook-postit:hover {
+  transform: translateX(4px);
+  border-color: rgba(229, 200, 144, 0.25);
+}
+
+.postit-badge {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--gold-champagne);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.scrapbook-postit p {
+  font-size: 1.02rem;
+  line-height: 1.65;
+  color: var(--text-warm);
+}
+
+.code-postit code {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: #6EE7B7;
+  display: block;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+/* MEMORY 06: THE ONE THAT MATTERS (CLIMAX) */
+.memory-card-climax {
+  border-color: rgba(229, 200, 144, 0.45);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8), 0 0 25px rgba(229, 200, 144, 0.14);
+}
+
+.pin-gold {
+  background: radial-gradient(circle at 35% 35%, #FFFDF0, #E5C890 60%, #9E7D2E 100%);
+  box-shadow: 0 3px 12px rgba(229, 200, 144, 0.6);
+}
+
+.gold-badge { color: var(--gold-champagne-light); }
+.gold-stamp {
+  background: rgba(229, 200, 144, 0.12);
+  color: var(--gold-champagne);
+  border: 1px solid rgba(229, 200, 144, 0.25);
+}
+
+.climax-heading {
+  color: var(--gold-champagne-light);
+}
+
+.memory-climax-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+  line-height: 1.75;
+  color: #FFFDF8;
+  margin-bottom: 16px;
+}
+
+.memory-climax-sub {
+  font-size: 1.08rem;
+  line-height: 1.7;
+  color: #E2E8F0;
+  margin-bottom: 24px;
+}
+
+.memory-whisper-box {
+  background: rgba(229, 200, 144, 0.05);
+  border: 1px solid rgba(229, 200, 144, 0.18);
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+  margin: 24px auto;
+  max-width: 540px;
+  text-align: center;
+}
+
+.memory-whisper-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--gold-champagne-light);
+  letter-spacing: 0.02em;
+}
+
+.capsule-continue-wrap {
+  margin: 28px 0 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.capsule-continue-btn {
+  background: linear-gradient(135deg, var(--plum-accent) 0%, #4F46E5 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 15px 34px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s var(--ease-apple);
+  box-shadow: 0 12px 35px rgba(121, 50, 130, 0.45);
+  min-height: 48px;
+}
+
+.capsule-continue-btn:hover {
+  background: linear-gradient(135deg, #9C3EA6 0%, #6366F1 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 18px 45px rgba(121, 50, 130, 0.6);
+}
+
+.continue-arrow {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+.capsule-continue-btn:hover .continue-arrow {
+  transform: translateX(4px);
+}
+
+.memory-footer-note {
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 14px;
+  text-align: right;
+}
+
+.memory-tagline {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* CONTROLS & PAGINATION FOOTER */
+.capsule-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(18, 14, 32, 0.5);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-pill);
+  margin-top: 10px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.capsule-ctrl-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-pure);
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+  min-height: 42px;
+}
+
+.capsule-ctrl-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(229, 200, 144, 0.3);
+}
+
+.capsule-pagination {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.capsule-pagination #capsulePageCurrent {
+  color: var(--gold-champagne);
+  font-size: 1.05rem;
+  font-weight: 700;
 }
 
 /* ==========================================================================
@@ -1997,29 +2448,65 @@ body {
     height: 320px;
   }
 
-  .cert-border-inner {
-    padding: 24px 14px;
+  .capsule-box {
+    padding: 30px 18px;
   }
 
-  .cert-footer {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-
-  .cert-sig-block {
+  .capsule-nav-bar {
+    border-radius: var(--radius-lg);
+    gap: 4px;
+    padding: 6px 4px;
     width: 100%;
-    max-width: 200px;
   }
 
-  .cert-actions {
-    flex-direction: column;
-    gap: 10px;
+  .capsule-nav-tab {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+    min-height: 38px;
   }
 
-  .cert-actions button {
+  .capsule-nav-tab .nav-title {
+    display: none;
+  }
+
+  .capsule-nav-tab .nav-index {
+    font-size: 0.8rem;
+    padding: 3px 8px;
+  }
+
+  .memory-card-inner {
+    padding: 32px 18px 24px;
+  }
+
+  .memory-heading {
+    font-size: 1.6rem;
+  }
+
+  .memory-quote {
+    font-size: 1.1rem;
+  }
+
+  .memory-shelf-grid {
+    gap: 6px;
+  }
+
+  .shelf-pill {
+    padding: 6px 10px;
+    font-size: 0.74rem;
+    min-height: 36px;
+  }
+
+  .shelf-preview-card {
+    padding: 16px;
+  }
+
+  .capsule-controls-bar {
+    padding: 10px 14px;
+  }
+
+  .capsule-continue-btn {
     width: 100%;
-    min-height: 48px;
+    justify-content: center;
   }
 
   .forever-gift-section {
@@ -2059,10 +2546,20 @@ body {
     width: 160px;
     height: 160px;
   }
+
+  .capsule-inscription h3 {
+    font-size: 1.5rem;
+  }
+
+  .capsule-open-btn {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 0.8rem;
+  }
 }
 
 /* ==========================================================================
-   PRINT STYLESHEET (CLEAN & IMMACULATE CERTIFICATE PRINTING)
+   PRINT STYLESHEET (CLEAN & IMMACULATE MINIMAL DISPLAY)
    ========================================================================== */
 @media print {
   body {
@@ -2075,33 +2572,9 @@ body {
   .audio-control-bar, .hero-section,
   .cake-card-section, .python-terminal-section, .gift-section,
   .myntra-qr-section, .balloon-section, .wishes-section,
-  .forever-gift-section, .site-footer, .cert-actions,
+  .time-capsule-section, .forever-gift-section, .site-footer,
   .modal-overlay, .cursor-dot, .cursor-ring {
     display: none !important;
-  }
-
-  .certificate-section {
-    margin: 0 !important;
-    padding: 0 !important;
-    max-width: 100% !important;
-  }
-
-  .certificate-wrapper {
-    padding: 0 !important;
-  }
-
-  .certificate-card {
-    box-shadow: none !important;
-    border: none !important;
-  }
-
-  .cert-border-outer {
-    border: 8px solid #000 !important;
-  }
-
-  .cert-border-inner {
-    border: 2px solid #854D0E !important;
-    background: #ffffff !important;
   }
 }
   </style>
@@ -2631,100 +3104,248 @@ body {
       </div>
     </section>
 
-    <!-- CHAPTER 7: OFFICIAL PRINTABLE CERTIFICATE OF HONOR -->
-    <section class="certificate-section reveal-on-scroll" id="certificateSection">
+    <!-- CHAPTER 7: CAROL'S BIRTHDAY TIME CAPSULE -->
+    <section class="time-capsule-section reveal-on-scroll" id="timeCapsuleSection">
       <div class="section-title">
-        <span class="sub-tag">07 — OFFICIALLY AWESOME</span>
-        <h2>Certificate of Excellence 📜✨</h2>
-        <p>An official honor awarded to Carol for surviving another year without causing total chaos! 😜</p>
+        <span class="sub-tag">THE MOMENTS WORTH KEEPING</span>
+        <h2>Carol's Birthday<br><span class="carol-gradient">Time Capsule</span></h2>
+        <p>Some surprises are meant to be remembered.</p>
       </div>
 
-      <div class="certificate-wrapper">
-        <div class="certificate-card" id="certificateCard">
-          <div class="cert-border-outer">
-            <div class="cert-border-inner">
-              
-              <!-- Header & Crest -->
-              <div class="cert-header">
-                <div class="cert-org-logo">
-                  <span class="cert-logo-icon" aria-hidden="true">👑 ✨</span>
-                  <span class="cert-org-name">OFFICIAL BIRTHDAY HONORS</span>
-                </div>
-                <div class="cert-title-badge">SPECIAL BIRTHDAY EDITION</div>
+      <div class="capsule-experience-wrapper">
+        <!-- CLOSED CAPSULE HERO PRESENTATION -->
+        <div class="capsule-container" id="capsuleContainer">
+          <div class="capsule-glow-aura" aria-hidden="true"></div>
+          <div class="capsule-box" id="capsuleBox">
+            <div class="capsule-glass-panel">
+              <div class="capsule-meta-top">
+                <span class="capsule-edition-tag">ARCHIVE EST. 2026</span>
+                <span class="capsule-lock-status">SEALED 🔒</span>
               </div>
-
-              <!-- Main Certificate Title -->
-              <div class="cert-main-title">
-                <h1>Certificate of Excellence</h1>
-                <div class="cert-subtitle-line">IS PROUDLY PRESENTED TO</div>
+              <div class="capsule-emblem" aria-hidden="true">
+                <div class="capsule-orbit-ring"></div>
+                <span class="capsule-core-icon">⏳</span>
               </div>
-
-              <!-- Recipient Name -->
-              <div class="cert-recipient-box">
-                <h2 class="cert-recipient-name">"Flawless Beauty" Carol 😂 🤪</h2>
-                <div class="cert-role-title">Chief Troublemaker & Code Crusher 👑</div>
+              <div class="capsule-inscription">
+                <h3>Carol's Archive</h3>
+                <p>Six cherished moments sealed inside obsidian glass.</p>
               </div>
-
-              <!-- Citation Statement -->
-              <div class="cert-body-text">
-                <p>In official recognition of her legendary ability to break local servers 💥, endless food cravings 🍟, hilarious jokes 😂, and officially surviving another year without causing total chaos!</p>
+              <div class="capsule-action-wrap">
+                <button id="btnOpenCapsule" class="capsule-open-btn" aria-label="Open the Time Capsule">
+                  <span class="capsule-btn-glow" aria-hidden="true"></span>
+                  <span class="capsule-btn-text">OPEN THE CAPSULE ✨</span>
+                </button>
               </div>
-
-              <!-- Award Badges Grid -->
-              <div class="cert-badges-row">
-                <div class="cert-badge-item">
-                  <span class="cert-badge-icon" aria-hidden="true">😈</span>
-                  <span class="cert-badge-label">Troublemaker</span>
-                </div>
-                <div class="cert-badge-item">
-                  <span class="cert-badge-icon" aria-hidden="true">🍰</span>
-                  <span class="cert-badge-label">Cake Monster</span>
-                </div>
-                <div class="cert-badge-item">
-                  <span class="cert-badge-icon" aria-hidden="true">⚡</span>
-                  <span class="cert-badge-label">Chaos Specialist</span>
-                </div>
-                <div class="cert-badge-item">
-                  <span class="cert-badge-icon" aria-hidden="true">🌟</span>
-                  <span class="cert-badge-label">Legend</span>
-                </div>
-              </div>
-
-              <!-- Footer Signatures & Official Ribbon Seal -->
-              <div class="cert-footer">
-                <div class="cert-sig-block">
-                  <div class="cert-signature-line cert-signed-name">Pravieen M.K.</div>
-                  <span class="cert-sig-label">Authorized Signature</span>
-                </div>
-
-                <div class="cert-seal">
-                  <div class="seal-circle">
-                    <span class="seal-star">★</span>
-                    <span class="seal-text">OFFICIAL<br>HONORS<br>2026</span>
-                    <span class="seal-star">★</span>
-                  </div>
-                </div>
-
-                <div class="cert-sig-block">
-                  <div class="cert-signature-line">September 24, 2026</div>
-                  <span class="cert-sig-label">Date of Recognition</span>
-                </div>
-              </div>
-
-              <div class="cert-id-tag">OFFICIAL ID: CAROL-24-SEP-2026-PYTHON-WIZARD-👑</div>
-
             </div>
           </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="cert-actions">
-          <button id="btnPrintCertificate" class="btn-primary cert-btn-print">
-            <span>🖨️ Print / Save Certificate</span>
-          </button>
-          <button id="btnConfettiCert" class="btn-primary gold-btn">
-            <span>🎉 Celebrate Carol!</span>
-          </button>
+        <!-- OPENED CAPSULE DIGITAL SCRAPBOOK (Hidden initially, reveals with animation) -->
+        <div class="capsule-album hidden" id="capsuleAlbum" role="region" aria-label="Digital Memory Album">
+          
+          <!-- TIMELINE NAV DIALS -->
+          <div class="capsule-nav-bar" role="tablist" aria-label="Time Capsule Memories">
+            <button class="capsule-nav-tab active" data-memory="0" role="tab" aria-selected="true" aria-controls="memoryCard0">
+              <span class="nav-index">01</span>
+              <span class="nav-title">The First Moment</span>
+            </button>
+            <button class="capsule-nav-tab" data-memory="1" role="tab" aria-selected="false" aria-controls="memoryCard1">
+              <span class="nav-index">02</span>
+              <span class="nav-title">The Chaos</span>
+            </button>
+            <button class="capsule-nav-tab" data-memory="2" role="tab" aria-selected="false" aria-controls="memoryCard2">
+              <span class="nav-index">03</span>
+              <span class="nav-title">The Little Things</span>
+            </button>
+            <button class="capsule-nav-tab" data-memory="3" role="tab" aria-selected="false" aria-controls="memoryCard3">
+              <span class="nav-index">04</span>
+              <span class="nav-title">The Surprises</span>
+            </button>
+            <button class="capsule-nav-tab" data-memory="4" role="tab" aria-selected="false" aria-controls="memoryCard4">
+              <span class="nav-index">05</span>
+              <span class="nav-title">The Laughs</span>
+            </button>
+            <button class="capsule-nav-tab" data-memory="5" role="tab" aria-selected="false" aria-controls="memoryCard5">
+              <span class="nav-index">06</span>
+              <span class="nav-title">The One That Matters</span>
+            </button>
+          </div>
+
+          <!-- MEMORY CARDS CONTAINER -->
+          <div class="capsule-stage">
+            
+            <!-- MEMORY 01: THE FIRST MOMENT -->
+            <article class="capsule-memory-card active" id="memoryCard0" role="tabpanel">
+              <div class="memory-card-inner">
+                <div class="memory-pin" aria-hidden="true"></div>
+                <div class="memory-header">
+                  <span class="memory-num-badge">MEMORY 01</span>
+                  <span class="memory-date-stamp">BIRTHDAY 2026</span>
+                </div>
+                <h3 class="memory-heading">THE FIRST MOMENT</h3>
+                <div class="memory-scrapbook-body">
+                  <p class="memory-quote">“Celebrating Carol 🤪 — officially older, slightly wiser, but still running on 99% chaos & coffee! May your code actually compile today and your cake be shared with me! 🍰”</p>
+                  <div class="memory-highlight-tape">
+                    <span>⚡ A Little Something For You · Happy Birthday, Carol.</span>
+                  </div>
+                </div>
+                <div class="memory-footer-note">
+                  <span class="memory-tagline">Chapter One · Where this year's story began</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- MEMORY 02: THE CHAOS -->
+            <article class="capsule-memory-card" id="memoryCard1" role="tabpanel">
+              <div class="memory-card-inner">
+                <div class="memory-pin" aria-hidden="true"></div>
+                <div class="memory-header">
+                  <span class="memory-num-badge">MEMORY 02</span>
+                  <span class="memory-date-stamp">DEV WORKSTATION</span>
+                </div>
+                <h3 class="memory-heading">THE CHAOS</h3>
+                <div class="memory-scrapbook-body">
+                  <div class="memory-code-snippet">
+                    <code><span class="c-kw">def</span> <span class="c-fn">fix_all_bugs</span>(code):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-ret">return</span> <span class="c-str">"Blame Staging Server & Eat Cake"</span></code>
+                  </div>
+                  <p class="memory-quote">“Chief Bug Slayer & Troublemaker 🤪 — Official Developer Perk: Immunity from blame whenever your code crashes production or breaks the server! 💥😜”</p>
+                  <div class="memory-highlight-tape">
+                    <span>STATUS: 200 OK · BUGS: 0 DETECTED · CHAOS LEVEL: 100%</span>
+                  </div>
+                </div>
+                <div class="memory-footer-note">
+                  <span class="memory-tagline">Chapter Two · Legendary server destroyer & coffee lover</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- MEMORY 03: THE LITTLE THINGS -->
+            <article class="capsule-memory-card" id="memoryCard2" role="tabpanel">
+              <div class="memory-card-inner">
+                <div class="memory-pin" aria-hidden="true"></div>
+                <div class="memory-header">
+                  <span class="memory-num-badge">MEMORY 03</span>
+                  <span class="memory-date-stamp">FRIENDSHIP NOTES</span>
+                </div>
+                <h3 class="memory-heading">THE LITTLE THINGS</h3>
+                <div class="memory-scrapbook-body">
+                  <p class="memory-quote">“Out of 8 billion people in the world, you are truly one of a kind! Thanks for being an awesome friend and always bringing smiles and crazy energy wherever you go!”</p>
+                  <p class="memory-subquote">“Carol's Official Body Maintenance Manual: Please take care of your stomach (chill on the wild junk food! 🍕), guard your hair (stop stressing it out! 💇‍♀️), and treat your body with care! Goal: Zero squeaky knees and zero broken bones!” 😂🩹</p>
+                </div>
+                <div class="memory-footer-note">
+                  <span class="memory-tagline">Chapter Three · Caring advice disguised as friendly teasing</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- MEMORY 04: THE SURPRISES -->
+            <article class="capsule-memory-card" id="memoryCard3" role="tabpanel">
+              <div class="memory-card-inner">
+                <div class="memory-pin" aria-hidden="true"></div>
+                <div class="memory-header">
+                  <span class="memory-num-badge">MEMORY 04</span>
+                  <span class="memory-date-stamp">THE 7 GIFTS</span>
+                </div>
+                <h3 class="memory-heading">THE SURPRISES</h3>
+                <p class="memory-shelf-desc">An interactive memory shelf of all seven birthday chapters. Tap any box to inspect:</p>
+                <div class="memory-shelf-grid" role="tablist" aria-label="Gifts Shelf">
+                  <button class="shelf-pill active" data-gift-index="0">01 · Warning ⚠️</button>
+                  <button class="shelf-pill" data-gift-index="1">02 · VIP Pass 🍿</button>
+                  <button class="shelf-pill" data-gift-index="2">03 · Always Right 🏆</button>
+                  <button class="shelf-pill" data-gift-index="3">04 · Body Care 🩺</button>
+                  <button class="shelf-pill" data-gift-index="4">05 · Code Perk 💻</button>
+                  <button class="shelf-pill" data-gift-index="5">06 · Blessing ✝️</button>
+                  <button class="shelf-pill" data-gift-index="6">07 · The Vault 🔒</button>
+                </div>
+                <div class="shelf-preview-card" id="shelfPreviewCard">
+                  <div class="shelf-preview-badge" id="shelfPreviewBadge">01 / OFFICIAL BIRTHDAY WARNING</div>
+                  <h4 class="shelf-preview-title" id="shelfPreviewTitle">Warning: You Are Officially One Year Older! ⚠️</h4>
+                  <p class="shelf-preview-text" id="shelfPreviewText">Age Status: +1 Year 👵 | Wisdom Status: Still loading... ⏳ | Chaos Level: 100% Maximum!</p>
+                </div>
+                <div class="memory-footer-note">
+                  <span class="memory-tagline">Chapter Four · The seven chapters of your birthday unboxing</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- MEMORY 05: THE LAUGHS -->
+            <article class="capsule-memory-card" id="memoryCard4" role="tabpanel">
+              <div class="memory-card-inner">
+                <div class="memory-pin" aria-hidden="true"></div>
+                <div class="memory-header">
+                  <span class="memory-num-badge">MEMORY 05</span>
+                  <span class="memory-date-stamp">ROASTS & GIGGLES</span>
+                </div>
+                <h3 class="memory-heading">THE LAUGHS</h3>
+                <div class="memory-scrapbook-body">
+                  <div class="scrapbook-postit">
+                    <span class="postit-badge">🍟 UNLIMITED FOOD DEMANDS</span>
+                    <p>“Every hangout plan: You demand food, I end up paying or buying snacks, and we both regret nothing! 😂”</p>
+                  </div>
+                  <div class="scrapbook-postit">
+                    <span class="postit-badge">☕ THE DAILY ROAST SESSION</span>
+                    <p>“Thanks for being the best person to tease, roast, and annoy every single day! Life would be 99% less entertaining without our daily chaos.”</p>
+                  </div>
+                  <div class="scrapbook-postit code-postit">
+                    <span class="postit-badge">🐍 MY FAVORITE EXCEPTION</span>
+                    <p><code>try: tease_carol()<br>except Reaction:<br>&nbsp;&nbsp;&nbsp;&nbsp;favorite_target = "Carol"  # Constant</code></p>
+                  </div>
+                </div>
+                <div class="memory-footer-note">
+                  <span class="memory-tagline">Chapter Five · The inside jokes that never get old</span>
+                </div>
+              </div>
+            </article>
+
+            <!-- MEMORY 06: THE ONE THAT MATTERS -->
+            <article class="capsule-memory-card" id="memoryCard5" role="tabpanel">
+              <div class="memory-card-inner memory-card-climax">
+                <div class="memory-pin pin-gold" aria-hidden="true"></div>
+                <div class="memory-header">
+                  <span class="memory-num-badge gold-badge">MEMORY 06</span>
+                  <span class="memory-date-stamp gold-stamp">ALWAYS & FOREVER</span>
+                </div>
+                <h3 class="memory-heading climax-heading">THE ONE THAT MATTERS</h3>
+                <div class="memory-scrapbook-body">
+                  <p class="memory-climax-quote">
+                    “Since it's month-end and <strong>paisa gaali</strong>, consider this website as my gift to you! This gift is for you forever, and this website will stay open for you always whenever you want to smile!” 🥳✨
+                  </p>
+                  <p class="memory-climax-sub">
+                    “No matter how busy life gets, genuine friendships never fade. You are truly appreciated, Carol. Stay just as weird, fun, and amazing as you are!”
+                  </p>
+                  <div class="memory-whisper-box">
+                    <p class="memory-whisper-text">Some memories don't need to be saved.<br>They're already somewhere else.</p>
+                  </div>
+                </div>
+                <div class="capsule-continue-wrap">
+                  <button id="btnCapsuleContinue" class="capsule-continue-btn" aria-label="Continue to Carol's Vault">
+                    <span>Continue to Carol's Vault</span>
+                    <svg class="continue-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="memory-footer-note">
+                  <span class="memory-tagline">Chapter Six · The heart of the surprise</span>
+                </div>
+              </div>
+            </article>
+
+          </div>
+
+          <!-- CONTROLS & TIMELINE FOOTER -->
+          <div class="capsule-controls-bar">
+            <button id="btnPrevMemory" class="capsule-ctrl-btn" aria-label="Previous Memory">
+              <span aria-hidden="true">←</span> Previous
+            </button>
+            <div class="capsule-pagination">
+              <span id="capsulePageCurrent">01</span> / <span>06</span>
+            </div>
+            <button id="btnNextMemory" class="capsule-ctrl-btn" aria-label="Next Memory">
+              Next <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
         </div>
       </div>
     </section>
@@ -2825,20 +3446,34 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPipInstall = document.getElementById('btnPipInstall');
   const btnPytest = document.getElementById('btnPytest');
   
-  const btnPrintCertificate = document.getElementById('btnPrintCertificate');
-  const btnConfettiCert = document.getElementById('btnConfettiCert');
   const wishCards = document.querySelectorAll('.wish-card');
   const foreverGiftSection = document.getElementById('foreverGiftSection');
+
+  // Time Capsule DOM Elements
+  const timeCapsuleSection = document.getElementById('timeCapsuleSection');
+  const capsuleContainer = document.getElementById('capsuleContainer');
+  const capsuleAlbum = document.getElementById('capsuleAlbum');
+  const btnOpenCapsule = document.getElementById('btnOpenCapsule');
+  const capsuleNavTabs = document.querySelectorAll('.capsule-nav-tab');
+  const capsuleMemoryCards = document.querySelectorAll('.capsule-memory-card');
+  const btnPrevMemory = document.getElementById('btnPrevMemory');
+  const btnNextMemory = document.getElementById('btnNextMemory');
+  const capsulePageCurrent = document.getElementById('capsulePageCurrent');
+  const btnCapsuleContinue = document.getElementById('btnCapsuleContinue');
+  const shelfPills = document.querySelectorAll('.shelf-pill');
+  const shelfPreviewBadge = document.getElementById('shelfPreviewBadge');
+  const shelfPreviewTitle = document.getElementById('shelfPreviewTitle');
+  const shelfPreviewText = document.getElementById('shelfPreviewText');
 
   let popScore = 0;
   let audioCtx = null;
   let isCarolVerified = false;
   let pendingAction = null;
   let blownCount = 0;
+  let currentMemoryIdx = 0;
 
   // Rate limiting & state tracking for sounds
   let lastBalloonSoundTime = 0;
-  let hasPlayedCertCelebrate = false;
   let hasPlayedFinalChime = false;
 
   // ==========================================================================
@@ -3066,25 +3701,21 @@ document.addEventListener('DOMContentLoaded', () => {
           break;
         }
 
-        case 'cert_celebrate': {
-          // One tasteful celebratory sound, duplicate playback prevented
-          if (hasPlayedCertCelebrate) return;
-          hasPlayedCertCelebrate = true;
-          setTimeout(() => { hasPlayedCertCelebrate = false; }, 4000);
-
-          const chord = [440, 554.37, 659.25, 880]; // A4, C#5, E5, A5
+        case 'capsule_open': {
+          // Rich, resonant cinematic chime when opening the Time Capsule
+          const chord = [329.63, 392.00, 493.88, 587.33, 783.99]; // E4, G4, B4, D5, G5
           chord.forEach((freq, idx) => {
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = 'sine';
-            osc.frequency.setValueAtTime(freq, t + idx * 0.07);
-            gain.gain.setValueAtTime(0.0001, t + idx * 0.07);
-            gain.gain.linearRampToValueAtTime(0.045, t + idx * 0.07 + 0.03);
-            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.07 + 0.65);
+            osc.frequency.setValueAtTime(freq, t + idx * 0.06);
+            gain.gain.setValueAtTime(0.0001, t + idx * 0.06);
+            gain.gain.linearRampToValueAtTime(0.045, t + idx * 0.06 + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, t + idx * 0.06 + 1.1);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
-            osc.start(t + idx * 0.07);
-            osc.stop(t + idx * 0.07 + 0.7);
+            osc.start(t + idx * 0.06);
+            osc.stop(t + idx * 0.06 + 1.15);
           });
           break;
         }
@@ -3815,21 +4446,171 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // CHAPTER 7: CERTIFICATE ACTIONS
-  // Print is silent. Celebrate Carol triggers one tasteful celebratory sound.
+  // CHAPTER 7: CAROL'S BIRTHDAY TIME CAPSULE CONTROLLER
+  // Luxury digital scrapbook & interactive memory box
   // ==========================================================================
 
-  if (btnPrintCertificate) {
-    btnPrintCertificate.addEventListener('click', () => {
-      window.print();
+  const capsuleGifts = [
+    {
+      badge: "01 / WARNING",
+      title: "Warning: Officially One Year Older! ⚠️",
+      text: "Age Status: +1 Year 👵 | Wisdom Status: Still loading... ⏳ | Chaos Level: 100% Maximum! ⚡"
+    },
+    {
+      badge: "02 / VIP PASS",
+      title: "Unlimited Rant & Debugging Pass 🍿💻",
+      text: "Valid for emergency 3 AM debugging or venting about crazy code bugs while I bring snacks and nod in 100% agreement! 😂"
+    },
+    {
+      badge: "03 / THE WINNER",
+      title: "Carol's 'I'm Always Right' Pass 🏆",
+      text: "Valid for 1 debate victory! Note: Fine print states I am still actually right 99% of the time! 😜 (Valid 365 Days)"
+    },
+    {
+      badge: "04 / HEALTH",
+      title: "Body Maintenance Manual 🩺",
+      text: "Goal: Chill on the wild junk food 🍕, stop stressing your hair 💇‍♀️, and zero squeaky knees or broken bones! Stay safe Carol! 😂🩹"
+    },
+    {
+      badge: "05 / DEV PERK",
+      title: "Staging Server Destroyer Pass 💻💥",
+      text: "Immunity from blame whenever your code crashes production or breaks local servers! def fix_all_bugs(code): return 'Blame Staging Server & Eat Cake' ⚡"
+    },
+    {
+      badge: "06 / BLESSING",
+      title: "Mangalore Thursday Blessing ✝️✨",
+      text: "Sincere prayer for divine blessings, good health, and a long living future with restored joy and love! Numbers 6:24-25 🙏✨"
+    },
+    {
+      badge: "07 / THE VAULT",
+      title: "Carol's Secret Vault 🔒",
+      text: "Out of 8 Billion People, You're My Favorite Person To Annoy! Irreplaceable chaos partner. ☕✨"
+    }
+  ];
+
+  function showMemory(idx) {
+    if (idx < 0) idx = 0;
+    if (idx >= capsuleMemoryCards.length) idx = capsuleMemoryCards.length - 1;
+    currentMemoryIdx = idx;
+
+    capsuleMemoryCards.forEach((card, i) => {
+      if (i === idx) {
+        card.classList.add('active');
+        card.setAttribute('aria-hidden', 'false');
+      } else {
+        card.classList.remove('active');
+        card.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    capsuleNavTabs.forEach((tab, i) => {
+      if (i === idx) {
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+      } else {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      }
+    });
+
+    if (capsulePageCurrent) {
+      capsulePageCurrent.textContent = `0${idx + 1}`;
+    }
+
+    // Gentle chime when reaching the final emotional memory
+    if (idx === 5 && !hasPlayedFinalChime) {
+      playUISound('final_note');
+    }
+  }
+
+  if (btnOpenCapsule) {
+    btnOpenCapsule.addEventListener('click', () => {
+      if (capsuleContainer) capsuleContainer.classList.add('capsule-opened');
+      if (capsuleAlbum) {
+        capsuleAlbum.classList.remove('hidden');
+        showMemory(0);
+      }
+      playUISound('capsule_open');
+      launchConfetti(45);
     });
   }
 
-  if (btnConfettiCert) {
-    btnConfettiCert.addEventListener('click', () => {
-      launchConfetti(70);
-      playUISound('cert_celebrate');
+  capsuleNavTabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const memIdx = parseInt(tab.getAttribute('data-memory'), 10);
+      if (!isNaN(memIdx)) showMemory(memIdx);
     });
+  });
+
+  if (btnPrevMemory) {
+    btnPrevMemory.addEventListener('click', () => {
+      showMemory(currentMemoryIdx - 1);
+    });
+  }
+
+  if (btnNextMemory) {
+    btnNextMemory.addEventListener('click', () => {
+      showMemory(currentMemoryIdx + 1);
+    });
+  }
+
+  // Memory 04: Interactive Gift Shelf
+  shelfPills.forEach((pill) => {
+    pill.addEventListener('click', () => {
+      const giftIdx = parseInt(pill.getAttribute('data-gift-index'), 10);
+      if (!isNaN(giftIdx) && capsuleGifts[giftIdx]) {
+        shelfPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        const g = capsuleGifts[giftIdx];
+        if (shelfPreviewBadge) shelfPreviewBadge.textContent = g.badge;
+        if (shelfPreviewTitle) shelfPreviewTitle.textContent = g.title;
+        if (shelfPreviewText) shelfPreviewText.textContent = g.text;
+      }
+    });
+  });
+
+  // Memory 06: Continue to Carol's Vault transition
+  if (btnCapsuleContinue) {
+    btnCapsuleContinue.addEventListener('click', () => {
+      playUISound('final_note');
+      if (foreverGiftSection) {
+        foreverGiftSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      // Trigger Carol's Vault unlock modal
+      setTimeout(() => {
+        requestCarolAuthentication(() => {
+          if (foreverGiftSection) {
+            foreverGiftSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+          launchConfetti(80);
+        });
+      }, 700);
+    });
+  }
+
+  // Mobile Touch Swipe Navigation for Time Capsule
+  const capsuleStage = document.querySelector('.capsule-stage');
+  if (capsuleStage) {
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    capsuleStage.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    capsuleStage.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      const diff = touchEndX - touchStartX;
+      if (Math.abs(diff) > 48) {
+        if (diff < 0) {
+          // Swipe Left -> Next Memory
+          showMemory(currentMemoryIdx + 1);
+        } else {
+          // Swipe Right -> Previous Memory
+          showMemory(currentMemoryIdx - 1);
+        }
+      }
+    }, { passive: true });
   }
 
   // ==========================================================================
